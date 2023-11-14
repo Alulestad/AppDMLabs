@@ -2,7 +2,12 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.DmDLL" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/verde_pastel</item>
+    </style>
+
+    <style name="button_Theme">
+        <item name="backgroundTint">@color/verde_pastel</item>
+        <item name="android:text">@string/app_name</item>
     </style>
 
     <style name="Theme.DmDLL" parent="Base.Theme.DmDLL" />
