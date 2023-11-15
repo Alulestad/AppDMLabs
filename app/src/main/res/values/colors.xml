@@ -4,5 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="verde_pastel">#64DC68</color>
     <color name="rojo_intenso">#CC0A10</color>
+    <color name="gris">#B3B2B2</color>
+    <color name="azul_claro">#6098DC</color>
+
 
 </resources>
