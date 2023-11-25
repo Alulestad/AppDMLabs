@@ -38,6 +38,8 @@ class LoginActivity : AppCompatActivity() {
         usuarios.add("admin3")
         contrasenia.add("admin3")
 
+
+
     }
 
     override fun onStart() {

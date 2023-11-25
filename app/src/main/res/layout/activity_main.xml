@@ -77,4 +77,14 @@
         android:text="Logout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <TextView
+        android:id="@+id/txtIp"
+        android:layout_width="134dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="28dp"
+        tools:text="192....127"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
