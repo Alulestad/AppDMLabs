@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
             }else{
                 // aca se activa la llamada al activity main
                 val intent= Intent(this,MainActivity::class.java)
-                intent.putExtra(Constants.TEXT_VARIABLE,"mi primera")
+                intent.putExtra(Constants.TEXT_VARIABLE,"usr: $u and pss: $p")
                 startActivity(intent)
             }
 
