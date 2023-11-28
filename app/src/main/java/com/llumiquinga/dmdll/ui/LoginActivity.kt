@@ -3,6 +3,7 @@ package com.llumiquinga.dmdll.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -14,11 +15,7 @@ import com.llumiquinga.dmdll.ui.core.Constants
 
 class LoginActivity : AppCompatActivity() {
 
-    private var usuarios =mutableListOf<String>()
-    private var contrasenia =mutableListOf<String>()
     private val singIn:SingIn=SingIn()
-
-
     private lateinit var binding: ActivityLoginBinding
 
 
@@ -30,13 +27,7 @@ class LoginActivity : AppCompatActivity() {
         binding=ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Usario y contraseña base
-        usuarios.add("admin1")
-        contrasenia.add("admin1")
-        usuarios.add("admin2")
-        contrasenia.add("admin2")
-        usuarios.add("admin3")
-        contrasenia.add("admin3")
+
 
 
 
@@ -62,11 +53,14 @@ class LoginActivity : AppCompatActivity() {
 
 
         binding.btnLogin.setOnClickListener {
-            var u= binding.txtUsuario.text.toString()
-            var p= binding.txtPass.text.toString()
+            val check:Int=SingIn().checkUserAndPasswordForma4(
+                binding.txtUsuario.text.toString(),
+                binding.txtPass.text.toString()
+            )
+
 
             //if (!singIn.checkUserAndPasswordForma3(u,p)){
-            if (singIn.checkUserAndPasswordForma4(u,p)<0){
+            if (check<0){
                 //Toast.makeText(this, u, Toast.LENGTH_LONG).show()
                 //Snackbar.make(binding.btnLogin,u,Snackbar.LENGTH_LONG).show()
                 Snackbar.make(binding.btnLogin,"usuario o" +
@@ -74,7 +68,8 @@ class LoginActivity : AppCompatActivity() {
             }else{
                 // aca se activa la llamada al activity main
                 val intent= Intent(this,MainActivity::class.java)
-                intent.putExtra(Constants.USER_ID,"usr: $u and pss: $p")
+                Log.d(Constants.TAG,"Se creo el intent")
+                intent.putExtra(Constants.USER_ID,check)
                 startActivity(intent)
             }
 
@@ -93,16 +88,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun validacionUsuario():Boolean{
 
-        var user_ingresado=binding.txtUsuario.text.toString()
-        var pass_ingresado=binding.txtPass.text.toString()
-        for(indice in usuarios.indices){
-            print("Se ingresa al sistema")
-
-        }
-    return true
-    }
 
 
 }

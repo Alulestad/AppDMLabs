@@ -14,7 +14,7 @@ data class Users (
 {
     var id:Int=-1
     var firsName:String =""
-    var lastName:String="" //estos datos se pueden acceder agregando .firstName="daniel"
+    var lastName:String ="" //estos datos se pueden acceder agregando .firstName="daniel"
     var profile:String?=""
     constructor(userName:String,password: String,profile: String? ,id:Int):this(userName,password){
         this.profile=profile

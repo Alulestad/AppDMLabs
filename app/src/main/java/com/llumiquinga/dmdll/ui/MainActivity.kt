@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             val userId=it?.getInt(Constants.USER_ID)
             if(userId!=null){
                 val user=SingIn().getUserName3(userId)
-                binding.textView.text=user.firsName.toString()
+                binding.textView.text=user.id.toString()
             }else{
                 // se deberia mandar a un activity de error.
                 Snackbar.make(binding.textView,"error",Snackbar.LENGTH_LONG).show()

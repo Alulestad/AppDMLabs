@@ -12,7 +12,7 @@ class DBUsers {
 
 
 
-        var lstUsers= listOf<Users>(usr1,usr2,usr3,usr4)
+        val lstUsers= listOf<Users>(usr1,usr2,usr3,usr4)
 
         return lstUsers
     }

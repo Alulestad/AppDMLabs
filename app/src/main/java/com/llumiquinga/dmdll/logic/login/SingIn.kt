@@ -58,7 +58,8 @@ class SingIn {
 
 
         if (lstUsers.isNotEmpty()){
-            Log.d(Constants.TAG,lstUsers.toString())
+
+            Log.d(Constants.TAG,lstUsers.toString()+" ID:"+lstUsers.first().id)
             return lstUsers.first().id
         }
 
