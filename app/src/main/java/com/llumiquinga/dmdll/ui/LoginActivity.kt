@@ -65,7 +65,8 @@ class LoginActivity : AppCompatActivity() {
             var u= binding.txtUsuario.text.toString()
             var p= binding.txtPass.text.toString()
 
-            if (!singIn.checkUserAndPassword(u,p)){
+            //if (!singIn.checkUserAndPasswordForma3(u,p)){
+            if (singIn.checkUserAndPasswordForma4(u,p)<0){
                 //Toast.makeText(this, u, Toast.LENGTH_LONG).show()
                 //Snackbar.make(binding.btnLogin,u,Snackbar.LENGTH_LONG).show()
                 Snackbar.make(binding.btnLogin,"usuario o" +
@@ -73,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
             }else{
                 // aca se activa la llamada al activity main
                 val intent= Intent(this,MainActivity::class.java)
-                intent.putExtra(Constants.TEXT_VARIABLE,"usr: $u and pss: $p")
+                intent.putExtra(Constants.USER_ID,"usr: $u and pss: $p")
                 startActivity(intent)
             }
 

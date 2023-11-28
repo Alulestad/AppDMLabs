@@ -9,6 +9,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.llumiquinga.dmdll.R
 import com.llumiquinga.dmdll.databinding.ActivityLoginBinding
 import com.llumiquinga.dmdll.databinding.ActivityMainBinding
+import com.llumiquinga.dmdll.logic.login.SingIn
+import com.llumiquinga.dmdll.ui.core.Constants
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +31,20 @@ class MainActivity : AppCompatActivity() {
         Ipfy.init(this,IpfyClass.UniversalIP) //to get Universal address in IPv4/v6
 
         getIpAddress()
+
+        intent.extras.let{
+            val userId=it?.getInt(Constants.USER_ID)
+            if(userId!=null){
+                val user=SingIn().getUserName3(userId)
+                binding.textView.text=user.firsName.toString()
+            }else{
+                // se deberia mandar a un activity de error.
+                Snackbar.make(binding.textView,"error",Snackbar.LENGTH_LONG).show()
+            }
+
+        }
+
+
     }
 
     private fun getIpAddress(){
