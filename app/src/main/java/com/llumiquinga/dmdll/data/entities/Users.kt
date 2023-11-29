@@ -1,7 +1,10 @@
 package com.llumiquinga.dmdll.data.entities
 
 import android.security.identity.AccessControlProfile
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 data class Users (
 
     var userName:String,
@@ -12,7 +15,9 @@ data class Users (
     )
 
 {
+    @PrimaryKey (autoGenerate = true)
     var id:Int=-1
+
     var firsName:String =""
     var lastName:String ="" //estos datos se pueden acceder agregando .firstName="daniel"
     var profile:String?=""
