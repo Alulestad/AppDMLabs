@@ -12,9 +12,8 @@ data class Users (
     //var name:String="",
     //var apellido:String="",
     //var perfil: String?=null //admin, user
-    )
+    ){
 
-{
     @PrimaryKey (autoGenerate = true)
     var id:Int=-1
 

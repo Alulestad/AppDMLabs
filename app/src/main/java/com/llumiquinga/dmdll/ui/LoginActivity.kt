@@ -9,13 +9,14 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.llumiquinga.dmdll.R
+import com.llumiquinga.dmdll.core.My_Applicacion
 import com.llumiquinga.dmdll.databinding.ActivityLoginBinding
 import com.llumiquinga.dmdll.logic.login.SingIn
 import com.llumiquinga.dmdll.ui.core.Constants
 
 class LoginActivity : AppCompatActivity() {
 
-    private val singIn:SingIn=SingIn()
+    private val singIn:SingIn=SingIn(My_Applicacion.getConnectionDB()!!)
     private lateinit var binding: ActivityLoginBinding
 
 
@@ -53,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         binding.btnLogin.setOnClickListener {
-            val check:Int=SingIn().checkUserAndPasswordForma4(
+            val check:Int=SingIn(My_Applicacion.getConnectionDB()!!).checkUserAndPasswordForma4(
                 binding.txtUsuario.text.toString(),
                 binding.txtPass.text.toString()
             )

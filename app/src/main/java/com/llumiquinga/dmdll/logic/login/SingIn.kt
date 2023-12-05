@@ -1,11 +1,14 @@
 package com.llumiquinga.dmdll.logic.login
 
+import android.content.Context
 import android.util.Log
 import com.llumiquinga.dmdll.data.entities.Users
+import com.llumiquinga.dmdll.data.repository.DBConnection
+import com.llumiquinga.dmdll.data.repository.DBRepository
 import com.llumiquinga.dmdll.data.repository.DBUsers
 import com.llumiquinga.dmdll.ui.core.Constants
 
-class SingIn {
+class SingIn (val connection:DBRepository){
 
     private val db:DBUsers= DBUsers()
     fun checkUserAndPassword(user:String, password:String): Boolean {
@@ -76,11 +79,22 @@ class SingIn {
             it.id==userId
         }
     }
-    fun getUserName3(userId:Int):Users{
-        return DBUsers().getListUsers().first {
+
+    fun getUserName1(userId:Int):Users=
+        connection.getUserDAO().getUser(userId)
+
+
+    fun getUserName3(userId:Int):Users= DBUsers().getListUsers().first {
             it.id==userId
-        }
     }
+
+    fun insertUser()=if(connection.getUserDAO().getAllUsers().isEmpty()){
+        val a=DBUsers().getListUsers()
+        connection.getUserDAO().insertUser(a)
+    }else{
+        
+    }
+
 
 
 }

@@ -7,6 +7,7 @@ import com.creative.ipfyandroid.Ipfy
 import com.creative.ipfyandroid.IpfyClass
 import com.google.android.material.snackbar.Snackbar
 import com.llumiquinga.dmdll.R
+import com.llumiquinga.dmdll.core.My_Applicacion
 import com.llumiquinga.dmdll.databinding.ActivityLoginBinding
 import com.llumiquinga.dmdll.databinding.ActivityMainBinding
 import com.llumiquinga.dmdll.logic.login.SingIn
@@ -33,9 +34,13 @@ class MainActivity : AppCompatActivity() {
         getIpAddress()
 
         intent.extras.let{
+
+            //My_Applicacion.getConnectionDB()!!.getUserDAO().getUser(3)
+
             val userId=it?.getInt(Constants.USER_ID)
             if(userId!=null){
-                val user=SingIn().getUserName3(userId)
+                val user=SingIn(My_Applicacion.getConnectionDB()!!)
+                    .getUserName3(userId) //ojo estaba
                 binding.textView.text=user.id.toString()
             }else{
                 // se deberia mandar a un activity de error.
