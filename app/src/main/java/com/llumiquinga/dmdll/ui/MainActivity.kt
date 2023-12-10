@@ -3,6 +3,8 @@ package com.llumiquinga.dmdll.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.style.SuperscriptSpan
+import androidx.lifecycle.lifecycleScope
 import com.creative.ipfyandroid.Ipfy
 import com.creative.ipfyandroid.IpfyClass
 import com.google.android.material.snackbar.Snackbar
@@ -13,6 +15,8 @@ import com.llumiquinga.dmdll.logic.login.SingIn
 import com.llumiquinga.dmdll.ui.core.Constants
 import com.llumiquinga.dmdll.ui.fragments.FragmentFavorites
 import com.llumiquinga.dmdll.ui.fragments.List1Fragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,7 +40,10 @@ class MainActivity : AppCompatActivity() {
 
         intent.extras.let{
 
-            //My_Applicacion.getConnectionDB()!!.getUserDAO().getUser(3)
+            lifecycleScope.launch (Dispatchers.IO){
+                intentConecction()
+            }
+
 
             val userId=it?.getInt(Constants.USER_ID)
             if(userId!=null){
@@ -84,8 +91,10 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
 
-
+    suspend fun intentConecction(){
+        My_Applicacion.getConnectionDB()!!.getUserDAO().getUser(3)
     }
 
     private fun getIpAddress(){
