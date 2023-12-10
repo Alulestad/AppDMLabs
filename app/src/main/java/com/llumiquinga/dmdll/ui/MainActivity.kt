@@ -8,10 +8,11 @@ import com.creative.ipfyandroid.IpfyClass
 import com.google.android.material.snackbar.Snackbar
 import com.llumiquinga.dmdll.R
 import com.llumiquinga.dmdll.core.My_Applicacion
-import com.llumiquinga.dmdll.databinding.ActivityLoginBinding
 import com.llumiquinga.dmdll.databinding.ActivityMainBinding
 import com.llumiquinga.dmdll.logic.login.SingIn
 import com.llumiquinga.dmdll.ui.core.Constants
+import com.llumiquinga.dmdll.ui.fragments.FragmentFavorites
+import com.llumiquinga.dmdll.ui.fragments.List1Fragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,6 +51,41 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        //////////FRAGMENTS
+        val list1Fragment=List1Fragment()
+        val fragmentFavorites=FragmentFavorites()
+
+
+
+
+        //transaccion.replace(binding.frmContainer.id,list1Fragment)
+        //transaccion.replace(binding.frmContainer2.id,fragmentFavorites)
+
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.it_home -> {
+                    val transaccion=supportFragmentManager.beginTransaction()
+
+                    transaccion.replace(binding.frmContainer.id,list1Fragment)
+                    transaccion.commit()
+                    // Respond to navigation item 1 click
+                    true
+                }
+                R.id.it_fav -> {
+                    val transaccion=supportFragmentManager.beginTransaction()
+
+                    transaccion.replace(binding.frmContainer.id,fragmentFavorites)
+                    transaccion.commit()
+                    // Respond to navigation item 2 click
+                    true
+                }
+                else -> false
+            }
+
+        }
+
+
+
     }
 
     private fun getIpAddress(){
@@ -80,4 +116,8 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
+
+
+
 }

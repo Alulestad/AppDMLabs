@@ -12,6 +12,27 @@
         <item name="android:textSize">15dp</item>
     </style>
 
+    <style name="button_theme_back">
+        <item name="backgroundTint">@color/verde_pastel</item><!--color de fondo-->
+        <item name="android:text">@string/back</item> <!--string de retroceder-->
+        <item name="android:textColor">@color/texto_para_contrate</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:layout_marginStart">30dp</item> <!--espacido desde la izquierda-->
+        <item name="android:layout_marginTop">30dp</item><!--espacido desde arriva-->
+        <item name="android:layout_width">50dp</item><!--ancho-->
+        <item name="android:layout_height">50dp</item><!--alto-->
+        <item name="android:drawableLeft">@drawable/btn_icon_retroceder</item> <!--icono-->
+
+
+
+    </style>
+
+    <style name="txtv_formularios">
+        <item name="android:textSize">15dp</item>
+
+    </style>
+
     <style name="editTextTheme">
         <item name="android:layout_marginBottom">15dp</item>
         <item name="android:textColor">@color/white</item>

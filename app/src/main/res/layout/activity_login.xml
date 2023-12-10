@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="90dp"
         android:layout_marginTop="600dp"
-        android:backgroundTint="@color/rojo_intenso"
+        android:backgroundTint="@color/rojito_intenso"
         android:text="Sing up"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

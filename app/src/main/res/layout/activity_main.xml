@@ -6,15 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
+
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="224dp"
-        android:layout_height="204dp"
-        android:layout_marginStart="104dp"
+        android:layout_width="180dp"
+        android:layout_height="114dp"
+        android:layout_marginStart="112dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.074"
+        app:layout_constraintVertical_bias="0.066"
         app:srcCompat="@drawable/eren_jaeger_adulto" />
 
     <TextView
@@ -33,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="172dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="12dp"
         android:text="Llumiquinga"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -43,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="184dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="32dp"
         android:text="Daniel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -53,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="172dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="8dp"
         android:text="Masculino"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -62,8 +64,8 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginBottom="94dp"
         android:text="Iniciar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -72,11 +74,11 @@
         android:id="@+id/btnlogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginBottom="92dp"
         android:text="Logout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtIp"
@@ -87,4 +89,41 @@
         tools:text="192....127"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <FrameLayout
+        android:id="@+id/frm_container"
+        android:layout_width="410dp"
+        android:layout_height="647dp"
+
+
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frm_container2"
+        android:layout_width="410dp"
+        android:layout_height="647dp"
+
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+
+
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigation_menu_bar" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

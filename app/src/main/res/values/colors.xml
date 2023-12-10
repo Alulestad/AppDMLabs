@@ -3,9 +3,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="verde_pastel">#64DC68</color>
-    <color name="rojo_intenso">#CC0A10</color>
+    <color name="rojito_intenso">#CC0A10</color>
+    <color name="texto_para_contrate">#8D6E63</color>
     <color name="gris">#B3B2B2</color>
     <color name="azul_claro">#6098DC</color>
+    <color name="rosa">#DE64A1</color>
+    <color name="cyan">#2BEFF0</color>
+    <color name="verde_pastel2">#5DF0C1</color>
+
+
 
 
 </resources>

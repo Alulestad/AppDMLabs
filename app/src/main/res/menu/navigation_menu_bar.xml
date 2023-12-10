@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/it_home"
+        android:enabled="true"
+        android:icon="@drawable/password1"
+        android:title="Home"/>
+    <item
+        android:id="@+id/it_fav"
+        android:enabled="true"
+        android:icon="@drawable/btn_icon_change"
+        android:title="Favorites"/>
+
+</menu>

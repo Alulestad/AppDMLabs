@@ -2,6 +2,7 @@
 <resources>
     <dimen name="text_normal_size">16dp</dimen>
     <dimen name="btn_normal_heigt">40dp</dimen>
+    <dimen name="btn_normal_with">90dp</dimen>
     <dimen name="padding_eddit_ext">15dp</dimen>
     
 </resources>
