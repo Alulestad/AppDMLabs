@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.style.SuperscriptSpan
+import android.util.Log
+import androidx.activity.contextaware.withContextAvailable
 import androidx.lifecycle.lifecycleScope
 import com.creative.ipfyandroid.Ipfy
 import com.creative.ipfyandroid.IpfyClass
@@ -15,8 +17,13 @@ import com.llumiquinga.dmdll.logic.login.SingIn
 import com.llumiquinga.dmdll.ui.core.Constants
 import com.llumiquinga.dmdll.ui.fragments.FragmentFavorites
 import com.llumiquinga.dmdll.ui.fragments.List1Fragment
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +36,26 @@ class MainActivity : AppCompatActivity() {
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initListeners()
+        checkDataBase()
+
+
+    }
+
+    private fun checkDataBase() {
+        lifecycleScope.launch(Dispatchers.Main) {
+            val usrs= withContext(Dispatchers.IO){
+                SingIn(My_Applicacion.getConnectionDB()!!)
+                    .getAllUsers()
+            }
+            Log.d(Constants.TAG,usrs.toString())
+
+        }
+
+
+    }
+
+    private fun initListeners() {
         // uso del ipify
         Ipfy.init(this) // this is a context of application
         //or you can also pass IpfyClass type to get either IPv4 address only or universal address IPv4/v6 as
@@ -62,37 +89,94 @@ class MainActivity : AppCompatActivity() {
         val list1Fragment=List1Fragment()
         val fragmentFavorites=FragmentFavorites()
 
-
-
-
         //transaccion.replace(binding.frmContainer.id,list1Fragment)
         //transaccion.replace(binding.frmContainer2.id,fragmentFavorites)
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
+            val manager=supportFragmentManager
             when(item.itemId) {
                 R.id.it_home -> {
-                    val transaccion=supportFragmentManager.beginTransaction()
+                    val transaccion=manager.beginTransaction()
 
-                    transaccion.replace(binding.frmContainer.id,list1Fragment)
+                    transaccion.replace(binding.frmContainer.id,List1Fragment())
                     transaccion.commit()
                     // Respond to navigation item 1 click
                     true
                 }
                 R.id.it_fav -> {
-                    val transaccion=supportFragmentManager.beginTransaction()
+                    val transaccion=manager.beginTransaction()
 
                     transaccion.replace(binding.frmContainer.id,fragmentFavorites)
                     transaccion.commit()
                     // Respond to navigation item 2 click
                     true
                 }
-                else -> false
+                else -> {
+
+                    lifeScopeCorrutinas();
+                    false
+                }
             }
 
         }
 
     }
 
+    private fun lifeScopeCorrutinas() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val a = "daniel"
+            withContext(Dispatchers.Main) {
+                binding.textView4.text = a
+            }
+
+        }
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            val name = withContext(Dispatchers.IO){
+                val a="Bayron"
+                val b=a+"Torres"
+
+                b
+            }
+            /*
+            val s =async {
+                val a=""
+                a
+            }
+            val s2 =async {
+                val a=""
+                a
+            }
+
+
+
+            val deferreds: List<Deferred<String>> = mutableListOf(s,s2)
+
+            deferreds.awaitAll()
+*/
+            val w= withContext(Dispatchers.Default){
+                val listC=listOf(
+                    async { getName() },
+                    async { getName() }
+                )
+                val w1= listC.awaitAll()
+            }
+
+
+            val name1 = withContext(Dispatchers.IO){
+                getName()
+            }
+
+            binding.textView4.text=name1.toString()
+        }
+    }
+
+
+    suspend fun getName():String{
+        val a="Carlos"
+        val b= a+"Mapache"
+        return b
+    }
     suspend fun intentConecction(){
         My_Applicacion.getConnectionDB()!!.getUserDAO().getUser(3)
     }

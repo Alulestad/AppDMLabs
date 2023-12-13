@@ -69,32 +69,32 @@ class SingIn (val connection:DBRepository){
         return -1
     }
 
-    fun getUserName(userId:Int):Users{
+     fun getUserName(userId:Int):Users{
         return DBUsers().getListUsers().filter {
             it.id==userId
         }.first()
     }
-    fun getUserNamever2(userId:Int):Users{ //##
+     fun getUserNamever2(userId:Int):Users{ //##
         return DBUsers().getListUsers().first() {
             it.id==userId
         }
     }
 
-    fun getUserName1(userId:Int):Users=
+     fun getUserName1(userId:Int):Users=
         connection.getUserDAO().getUser(userId)
 
 
-    fun getUserName3(userId:Int):Users= DBUsers().getListUsers().first {
+     fun getUserName3(userId:Int):Users= DBUsers().getListUsers().first {
             it.id==userId
     }
 
-    fun insertUser()=if(connection.getUserDAO().getAllUsers().isEmpty()){
+      fun insertUser()=if(connection.getUserDAO().getAllUsers().isEmpty()){
         val a=DBUsers().getListUsers()
         connection.getUserDAO().insertUser(a)
     }else{
-        
+        null
     }
 
-
+     fun getAllUsers():List<Users> = connection.getUserDAO().getAllUsers()
 
 }
