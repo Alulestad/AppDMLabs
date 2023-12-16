@@ -16,7 +16,6 @@ class My_Applicacion :Application(){
         GlobalScope.launch (Dispatchers.IO){
 
             SingIn(con).insertUser()
-
         }
 
     }
