@@ -9,19 +9,30 @@
     android:background="@color/verde_pastel"
     tools:context=".ui.MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="164dp"
+        android:layout_height="172dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="28dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dragon_transparente" />
+
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_sing_up"
         style="@style/button_Theme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
+        android:layout_marginStart="72dp"
         android:layout_marginTop="600dp"
-        android:backgroundTint="@color/rojito_intenso"
+        android:backgroundTint="@color/texto_para_contrate"
+        android:drawableLeft="@drawable/btn_icon_change"
         android:text="Sing up"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextSizeCheck"
-        android:drawableLeft="@drawable/btn_icon_change"
 
         />
 
@@ -38,6 +49,7 @@
 
 
         <LinearLayout
+
             android:id="@+id/linearLayout"
             android:layout_width="300dp"
             android:layout_height="300dp"
@@ -52,18 +64,24 @@
             app:layout_constraintVertical_bias="0.705">
 
             <LinearLayout
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="101dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/imageView3"
+
+                <TextView
+                    android:id="@+id/txt_email_ing"
                     android:layout_width="53dp"
                     android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/icon_user1" />
+                    android:text="Email:"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+
+                    />
 
                 <EditText
                     android:id="@+id/txt_usuario"
@@ -75,7 +93,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="@string/email"
+                    android:hint="  Email"
                     android:textSize="@dimen/text_normal_size"
 
                     android:padding="@dimen/padding_eddit_ext"
@@ -98,97 +116,86 @@
                 android:layout_height="115dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="68dp"
-                    android:layout_height="57dp"
+
+                <TextView
+                    android:id="@+id/txt_passw_ing"
+                    android:layout_width="53dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/icon_pass1" />
+                    android:text="Clave:"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+
+                    />
 
                 <EditText
+                    android:layout_gravity="center"
+                    android:drawableLeft="@drawable/icon_baseline_key_24"
                     android:id="@+id/txt_pass"
                     style="@style/editTextTheme"
                     android:layout_width="195dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="@string/app_name"
+                    android:layout_marginTop="10dp"
+                    android:hint="  Clave"
                     android:inputType="textPassword"
                     android:minHeight="48dp" />
 
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/editTextText2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                style="@style/editTextTheme"
-                android:text="Name" />
 
+            <!--
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@drawable/icon_baseline_key_24"
+                    android:id="@+id/txt_pasdfs"
+                    style="@style/editTextTheme"
+                    android:layout_width="195dp"
                     android:layout_height="wrap_content"
-                    android:hint="hint"
-                    android:imeOptions="actionDone"
+                    android:ems="10"
+                    android:layout_marginTop="10dp"
+                    android:hint="  Clave"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
                     />
             </com.google.android.material.textfield.TextInputLayout>
-
+            -->
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="164dp"
-        android:layout_height="172dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="84dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dragon_transparente" />
+
 
     <Button
         android:id="@+id/btn_login"
+        style="@style/button_Theme"
+        android:backgroundTint="@color/azul_claro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="600dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="80dp"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="63dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="56dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_verified_user_24" />
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="167dp"
-        android:layout_height="144dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/eren_chill" />
+
+
 
     <Button
         android:id="@+id/btngoogle"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
         android:layout_marginTop="16dp"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_sing_up" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

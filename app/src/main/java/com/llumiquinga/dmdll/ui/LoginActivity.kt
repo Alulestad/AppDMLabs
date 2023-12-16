@@ -87,6 +87,14 @@ class LoginActivity : AppCompatActivity() {
             intentImpl.type="text/plain"
             startActivity(intentImpl)
         }
+
+        binding.btnSingUp.setOnClickListener {
+            val intent= Intent(this,RegistroActivity::class.java)
+            Log.d(Constants.TAG,"Se creo el intent")
+            //intent.putExtra(Constants.USER_ID,1)
+            startActivity(intent)
+
+        }
     }
 
 

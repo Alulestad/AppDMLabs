@@ -24,7 +24,7 @@
         app:cardBackgroundColor="@color/black"
 
         android:layout_width="335dp"
-        android:layout_height="471dp"
+        android:layout_height="600dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
 
@@ -53,7 +53,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtv_nombre_registro"
+                    android:id="@+id/txtv_nombre"
                     style="@style/txtv_formularios"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,16 +63,103 @@
                     />
 
                 <EditText
+                    android:id="@+id/edtxt_nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_gravity="right"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:hint="nombre"
+                    android:textSize="@dimen/text_normal_size"
+
+                    android:padding="@dimen/padding_eddit_ext"
+
+                    android:drawableLeft="@drawable/icon_user1"
+                    android:drawableTint="@color/white"
+
+                    style="@style/editTextTheme"
+
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="101dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_apellido"
+                    style="@style/txtv_formularios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apellido"
+                    tools:layout_editor_absoluteX="116dp"
+                    tools:layout_editor_absoluteY="633dp"
+                    />
+
+                <EditText
+                    android:id="@+id/edtxt_apellido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_gravity="right"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:hint="Apellido"
+                    android:textSize="@dimen/text_normal_size"
+
+                    android:padding="@dimen/padding_eddit_ext"
+
+                    android:drawableLeft="@drawable/icon_user1"
+                    android:drawableTint="@color/white"
+
+                    style="@style/editTextTheme"
+
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="101dp"
+                android:orientation="horizontal">
+
+                <TextView
                     android:id="@+id/txt_usuario"
+                    style="@style/txtv_formularios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Usuario"
+                    tools:layout_editor_absoluteX="116dp"
+                    tools:layout_editor_absoluteY="633dp"
+                    />
+
+                <EditText
+                    android:id="@+id/edtxt_usuario"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="right"
                     android:layout_margin="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="usuario"
+                    android:hint="usuario"
                     android:textSize="@dimen/text_normal_size"
 
                     android:padding="@dimen/padding_eddit_ext"
@@ -88,34 +175,34 @@
 
                     />
 
-            </LinearLayout>
 
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="101dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtv_nombre_registro1"
-                    style="@style/txtv_formularios"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nombre"
-                    tools:layout_editor_absoluteX="116dp"
-                    tools:layout_editor_absoluteY="633dp"
-                    />
-
-                <EditText
                     android:id="@+id/txt_email"
+                    style="@style/txtv_formularios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    tools:layout_editor_absoluteX="116dp"
+                    tools:layout_editor_absoluteY="633dp"
+                    />
+
+                <EditText
+                    android:id="@+id/edtxt_email"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="right"
                     android:layout_margin="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="@string/email"
+                    android:hint="Email"
                     android:textSize="@dimen/text_normal_size"
 
                     android:padding="@dimen/padding_eddit_ext"
@@ -133,33 +220,75 @@
 
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="101dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtv_nombre_registro12"
+                    android:id="@+id/txt_passw"
                     style="@style/txtv_formularios"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre"
+                    android:text="Clave"
                     tools:layout_editor_absoluteX="116dp"
                     tools:layout_editor_absoluteY="633dp"
                     />
 
                 <EditText
-                    android:id="@+id/txt_email3"
+                    android:id="@+id/edtxt_passw"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="right"
                     android:layout_margin="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="contrasenia"
+                    android:hint="Clave"
+                    android:textSize="@dimen/text_normal_size"
+
+                    android:padding="@dimen/padding_eddit_ext"
+
+                    android:drawableLeft="@drawable/icon_user1"
+                    android:drawableTint="@color/white"
+
+                    style="@style/editTextTheme"
+
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="101dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_passw2"
+                    style="@style/txtv_formularios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clave rep"
+                    tools:layout_editor_absoluteX="116dp"
+                    tools:layout_editor_absoluteY="633dp"
+                    />
+
+                <EditText
+                    android:id="@+id/edtxt_passw2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_gravity="right"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:hint="Clave rep"
                     android:textSize="@dimen/text_normal_size"
 
                     android:padding="@dimen/padding_eddit_ext"
@@ -185,24 +314,28 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_salir"
+        style="@style/button_Theme"
+        android:backgroundTint="@color/texto_para_contrate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginBottom="68dp"
-        android:text="Button"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="32dp"
+        android:text="Salir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btn_registrarse"
+        style="@style/button_Theme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginBottom="68dp"
-        android:text="Button"
+        android:layout_marginStart="92dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/azul_claro"
+        android:text="Registrarse"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button2" />
+        app:layout_constraintStart_toEndOf="@+id/btn_salir" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
