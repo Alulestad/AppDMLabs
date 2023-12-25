@@ -7,24 +7,23 @@
     tools:context=".ui.MainActivity">
 
 
-
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="180dp"
-        android:layout_height="114dp"
-        android:layout_marginStart="112dp"
+        android:layout_width="109dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.066"
+        app:layout_constraintVertical_bias="0.024"
         app:srcCompat="@drawable/eren_jaeger_adulto" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Bienvenido a mi mundo"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,8 +33,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="16dp"
         android:text="Llumiquinga"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -44,8 +43,8 @@
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="184dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="12dp"
         android:text="Daniel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -54,8 +53,8 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="4dp"
         android:text="Masculino"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtName" />
@@ -84,31 +83,52 @@
         android:id="@+id/txtIp"
         android:layout_width="134dp"
         android:layout_height="24dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="28dp"
-        tools:text="192....127"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:text="192....127" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvUsers"
+        android:layout_width="259dp"
+        android:layout_height="297dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pbPrincipal"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="140dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/frm_container"
-        android:layout_width="410dp"
-        android:layout_height="647dp"
+        android:layout_width="409dp"
+        android:layout_height="350dp"
 
-
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
 
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+
+        >
+
+
+        <!--app:layout_contraintEnd_toEndOf="parent"
+            app:layout_contraintStart_toStartOf="parent"
+            -->
+
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/frm_container2"
-        android:layout_width="410dp"
-        android:layout_height="647dp"
-
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_width="416dp"
+        android:layout_height="350dp"
 
 
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"

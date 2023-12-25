@@ -5,15 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.style.SuperscriptSpan
 import android.util.Log
+import android.view.View
 import androidx.activity.contextaware.withContextAvailable
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.creative.ipfyandroid.Ipfy
 import com.creative.ipfyandroid.IpfyClass
 import com.google.android.material.snackbar.Snackbar
 import com.llumiquinga.dmdll.R
 import com.llumiquinga.dmdll.core.My_Applicacion
+import com.llumiquinga.dmdll.data.entities.Users
 import com.llumiquinga.dmdll.databinding.ActivityMainBinding
 import com.llumiquinga.dmdll.logic.login.SingIn
+import com.llumiquinga.dmdll.ui.adapters.UsersAdapter
 import com.llumiquinga.dmdll.ui.core.Constants
 import com.llumiquinga.dmdll.ui.fragments.FragmentFavorites
 import com.llumiquinga.dmdll.ui.fragments.List1Fragment
@@ -22,6 +26,7 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -38,7 +43,21 @@ class MainActivity : AppCompatActivity() {
 
         initListeners()
         checkDataBase()
+        initRecyclerView()
 
+
+    }
+
+    private fun initRecyclerView() {
+        lifecycleScope.launch (Dispatchers.Main){
+            val usrs= withContext(Dispatchers.IO){getUsersList()}
+            val adapter:UsersAdapter= UsersAdapter(usrs)
+            binding.rvUsers.adapter=adapter
+            binding.rvUsers.layoutManager=
+                LinearLayoutManager(this@MainActivity,
+                    LinearLayoutManager.VERTICAL,false)
+            binding.pbPrincipal.visibility= View.GONE
+        }
 
     }
 
@@ -53,6 +72,12 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    suspend fun getUsersList() :List<Users>{
+        delay(7000)
+        return SingIn(My_Applicacion.getConnectionDB()!!)
+                    .getAllUsers()
     }
 
     private fun initListeners() {

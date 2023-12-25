@@ -25,7 +25,6 @@
         <item name="android:drawableLeft">@drawable/btn_icon_retroceder</item> <!--icono-->
 
 
-
     </style>
 
     <style name="txtv_formularios">
