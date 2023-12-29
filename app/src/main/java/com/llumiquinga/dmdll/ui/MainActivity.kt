@@ -51,6 +51,8 @@ class MainActivity : AppCompatActivity() {
     private fun initRecyclerView() {
         lifecycleScope.launch (Dispatchers.Main){
             val usrs= withContext(Dispatchers.IO){getUsersList()}
+            Log.d(Constants.TAG,"MainActivity>initRecyclerView> "+usrs)
+            Log.d(Constants.TAG,"MainActivity>initRecyclerView> 1 Nombre>"+usrs.first().firsName)
             val adapter:UsersAdapter= UsersAdapter(usrs)
             binding.rvUsers.adapter=adapter
             binding.rvUsers.layoutManager=
@@ -67,7 +69,8 @@ class MainActivity : AppCompatActivity() {
                 SingIn(My_Applicacion.getConnectionDB()!!)
                     .getAllUsers()
             }
-            Log.d(Constants.TAG,usrs.toString())
+            Log.d(Constants.TAG,"MainActivity>checkDataBase> "+usrs.toString())
+            Log.d(Constants.TAG,"MainActivity>checkDataBase> 1 Nombre>"+usrs.first().firsName)
 
         }
 
@@ -75,7 +78,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     suspend fun getUsersList() :List<Users>{
-        delay(7000)
+        delay(1000)
+        var allusers=SingIn(My_Applicacion.getConnectionDB()!!).getAllUsers()
+        Log.d(Constants.TAG,"MainActivity>getUsersList> "+allusers)
+        Log.d(Constants.TAG,"MainActivity>getUsersList> 1 Nombre>"+allusers.first().firsName)
+
         return SingIn(My_Applicacion.getConnectionDB()!!)
                     .getAllUsers()
     }

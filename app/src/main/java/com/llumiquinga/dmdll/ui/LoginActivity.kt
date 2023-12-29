@@ -16,7 +16,6 @@ import com.llumiquinga.dmdll.ui.core.Constants
 
 class LoginActivity : AppCompatActivity() {
 
-    private val singIn:SingIn=SingIn(My_Applicacion.getConnectionDB()!!)
     private lateinit var binding: ActivityLoginBinding
 
 

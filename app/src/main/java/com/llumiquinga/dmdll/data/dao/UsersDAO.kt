@@ -10,7 +10,7 @@ import com.llumiquinga.dmdll.data.entities.Users
 @Dao
 interface UsersDAO {
 
-    @Query("select * from Users")
+    @Query("select Users.userName,Users.password,Users.profile,Users.id,Users.firsName,Users.lastName from Users")
     fun getAllUsers():List<Users>
 
     @Query("select * from Users where id=:id")
