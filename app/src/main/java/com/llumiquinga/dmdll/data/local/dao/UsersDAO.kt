@@ -1,20 +1,20 @@
-package com.llumiquinga.dmdll.data.dao
+package com.llumiquinga.dmdll.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.llumiquinga.dmdll.data.entities.Users
+import com.llumiquinga.dmdll.data.local.entities.Users
 
 @Dao
 interface UsersDAO {
 
-    @Query("select Users.userName,Users.password,Users.profile,Users.id,Users.firsName,Users.lastName from Users")
+    @Query("select * from Users")
     fun getAllUsers():List<Users>
 
     @Query("select * from Users where id=:id")
-    fun getUser(id:Int):Users
+    fun getUser(id:Int): Users
 
     @Insert
     fun insertUser(users:List<Users>)
@@ -23,7 +23,7 @@ interface UsersDAO {
     fun updateUser(user:List<Users>)
 
     @Delete
-    fun deleteUser(user:Users)
+    fun deleteUser(user: Users)
 
     //@Delete
     //public fun deleteAlbumAndSongs(val album: Album, val songs: List<Song>)

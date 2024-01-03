@@ -1,4 +1,4 @@
-package com.llumiquinga.dmdll.data.entities
+package com.llumiquinga.dmdll.data.local.entities
 
 import android.security.identity.AccessControlProfile
 import androidx.room.ColumnInfo
@@ -19,11 +19,8 @@ data class Users (
     var firsName:String,
 
     @ColumnInfo
-    var lastName:String //estos datos se pueden acceder agregando .firstName="daniel"
+    var lastName:String
 
-    //var name:String="",
-    //var apellido:String="",
-    //var perfil: String?=null //admin, user
     ){
 
     @PrimaryKey (autoGenerate = true)
@@ -38,12 +35,9 @@ data class Users (
 
     }
 
-    //constructor(id:Int,userName:String,password: String,profile: String?,firsName:String, lastName:String): this(id,userName,password,profile,firsName,lastName)
 
 
 
 }
 
 
-
-//nombre apellido perfil

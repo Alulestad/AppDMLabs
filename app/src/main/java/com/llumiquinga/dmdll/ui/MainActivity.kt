@@ -14,7 +14,7 @@ import com.creative.ipfyandroid.IpfyClass
 import com.google.android.material.snackbar.Snackbar
 import com.llumiquinga.dmdll.R
 import com.llumiquinga.dmdll.core.My_Applicacion
-import com.llumiquinga.dmdll.data.entities.Users
+import com.llumiquinga.dmdll.data.local.entities.Users
 import com.llumiquinga.dmdll.databinding.ActivityMainBinding
 import com.llumiquinga.dmdll.logic.login.SingIn
 import com.llumiquinga.dmdll.ui.adapters.UsersAdapter

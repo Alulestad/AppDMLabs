@@ -3,16 +3,16 @@ package com.llumiquinga.dmdll.logic.login
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.llumiquinga.dmdll.core.My_Applicacion
-import com.llumiquinga.dmdll.data.entities.Users
-import com.llumiquinga.dmdll.data.repository.DBRepository
-import com.llumiquinga.dmdll.data.repository.DBUsers
+import com.llumiquinga.dmdll.data.local.entities.Users
+import com.llumiquinga.dmdll.data.local.repository.DBRepository
+import com.llumiquinga.dmdll.data.local.repository.DBUsers
 import com.llumiquinga.dmdll.ui.core.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SingIn (val connection_DBRpository:DBRepository){
+class SingIn (val connection_DBRpository: DBRepository){
 
-    private val db:DBUsers= DBUsers()
+    private val db: DBUsers = DBUsers()
     fun checkUserAndPassword(user:String, password:String): Boolean {
 
         val usuarioIngresado=user
@@ -62,9 +62,6 @@ class SingIn (val connection_DBRpository:DBRepository){
             it.password==password && it.userName ==user
 
         }
-
-        ///
-
         users.filter {
             it.lastName=="1"
         }
@@ -78,27 +75,27 @@ class SingIn (val connection_DBRpository:DBRepository){
         return -1
     }
 
-     fun getUserName(userId:Int):Users{
+     fun getUserName(userId:Int): Users {
         return DBUsers().getListUsers().filter {
             it.id==userId
         }.first()
     }
-     fun getUserNamever2(userId:Int):Users{ //##
+     fun getUserNamever2(userId:Int): Users { //##
         return DBUsers().getListUsers().first() {
             it.id==userId
         }
     }
 
-     fun getUserName1(userId:Int):Users=
+     fun getUserName1(userId:Int): Users =
         connection_DBRpository.getUserDAO().getUser(userId)
 
 
-     fun getUserName3(userId:Int):Users= DBUsers().getListUsers().first {
+     fun getUserName3(userId:Int): Users = DBUsers().getListUsers().first {
             it.id==userId
     }
 
       fun insertUser()=if(connection_DBRpository.getUserDAO().getAllUsers().isEmpty()){
-        val a=DBUsers().getListUsers()
+        val a= DBUsers().getListUsers()
         connection_DBRpository.getUserDAO().insertUser(a)
     }else{
         null

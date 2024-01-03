@@ -1,8 +1,8 @@
 package com.llumiquinga.dmdll.core
 
 import android.app.Application
-import com.llumiquinga.dmdll.data.repository.DBConnection
-import com.llumiquinga.dmdll.data.repository.DBRepository
+import com.llumiquinga.dmdll.data.local.repository.DBConnection
+import com.llumiquinga.dmdll.data.local.repository.DBRepository
 import com.llumiquinga.dmdll.logic.login.SingIn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -12,7 +12,7 @@ class My_Applicacion :Application(){
 
     override fun onCreate() {
         super.onCreate()
-        con=DBConnection().getConnection(applicationContext) //OJO
+        con= DBConnection().getConnection(applicationContext) //OJO
         GlobalScope.launch (Dispatchers.IO){
 
             SingIn(con).insertUser()
@@ -25,8 +25,8 @@ class My_Applicacion :Application(){
     }
 
     companion object {
-        private lateinit var con:DBRepository
-        fun getConnectionDB():DBRepository?{
+        private lateinit var con: DBRepository
+        fun getConnectionDB(): DBRepository?{
             return con
         }
     }
