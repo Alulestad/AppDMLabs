@@ -17,6 +17,7 @@ import com.llumiquinga.dmdll.core.My_Applicacion
 import com.llumiquinga.dmdll.data.local.entities.Users
 import com.llumiquinga.dmdll.databinding.ActivityMainBinding
 import com.llumiquinga.dmdll.logic.login.SingIn
+import com.llumiquinga.dmdll.logic.usercase.jikan.JikanAnimeUserCase
 import com.llumiquinga.dmdll.ui.adapters.UsersAdapter
 import com.llumiquinga.dmdll.ui.core.Constants
 import com.llumiquinga.dmdll.ui.fragments.FragmentFavorites
@@ -44,6 +45,9 @@ class MainActivity : AppCompatActivity() {
         initListeners()
         checkDataBase()
         initRecyclerView()
+
+        val a=JikanAnimeUserCase()
+        //aca ya llama automaticamente como si fuera con un invoke
 
 
     }

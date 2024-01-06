@@ -30,12 +30,17 @@ class JikanAnimeUserCase {
             infoAnime.big_image=call.body()!!.data.images.jpg.large_image_url
 */
 
+
         }else{
             Log.d(Constants.TAG, "Error en el llamado a la API de Jikan")
         }
 
         return infoAnime
-
-
     }
+
+    fun getAllTopsAnimes(){
+
+        //return List<FullInfoAnimeLG>() //"Listadod de animes"
+    }
+
 }
