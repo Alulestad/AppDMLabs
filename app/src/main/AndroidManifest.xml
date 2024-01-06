@@ -33,7 +33,7 @@
         </activity>
 
         <activity
-            android:name=".ui.PrincipalActivity2"
+            android:name=".ui.PrincipalActivity"
             android:exported="true"
             android:label="@string/title_activity_principal"
             android:theme="@style/Theme.DmDLL">

@@ -1,4 +1,4 @@
-package com.llumiquinga.dmdll.data.network.endpoints
+package com.llumiquinga.dmdll.data.network.repository
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
