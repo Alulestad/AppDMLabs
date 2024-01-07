@@ -1,4 +1,4 @@
-package com.llumiquinga.dmdll.logic.usercase.jikan.entities
+package com.llumiquinga.dmdll.logic.entities
 
 data class FullInfoAnimeLG (
     var id:Int=-1,

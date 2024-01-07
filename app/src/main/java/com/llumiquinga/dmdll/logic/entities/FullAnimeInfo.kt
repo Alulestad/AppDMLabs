@@ -1,4 +1,4 @@
-package com.llumiquinga.dmdll.logic.usercase.jikan.entities
+package com.llumiquinga.dmdll.logic.entities
 
 import android.provider.ContactsContract.Data
 import com.llumiquinga.dmdll.data.network.entities.jikan.anime.FullInfoAnime

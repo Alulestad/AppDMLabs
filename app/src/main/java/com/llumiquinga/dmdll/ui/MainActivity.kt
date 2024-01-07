@@ -16,7 +16,7 @@ import com.llumiquinga.dmdll.R
 import com.llumiquinga.dmdll.core.My_Applicacion
 import com.llumiquinga.dmdll.data.local.entities.Users
 import com.llumiquinga.dmdll.databinding.ActivityMainBinding
-import com.llumiquinga.dmdll.logic.login.SingIn
+import com.llumiquinga.dmdll.logic.usercase.local.login.SingIn
 import com.llumiquinga.dmdll.logic.usercase.jikan.JikanAnimeUserCase
 import com.llumiquinga.dmdll.ui.adapters.UsersAdapter
 import com.llumiquinga.dmdll.ui.core.Constants
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
     suspend fun getUsersList() :List<Users>{
         delay(1000)
-        var allusers=SingIn(My_Applicacion.getConnectionDB()!!).getAllUsers()
+        var allusers= SingIn(My_Applicacion.getConnectionDB()!!).getAllUsers()
         Log.d(Constants.TAG,"MainActivity>getUsersList> "+allusers)
         Log.d(Constants.TAG,"MainActivity>getUsersList> 1 Nombre>"+allusers.first().firsName)
 
@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
 
             val userId=it?.getInt(Constants.USER_ID)
             if(userId!=null){
-                val user=SingIn(My_Applicacion.getConnectionDB()!!)
+                val user= SingIn(My_Applicacion.getConnectionDB()!!)
                     .getUserName3(userId) //ojo estaba
                 binding.textView.text=user.id.toString()
             }else{

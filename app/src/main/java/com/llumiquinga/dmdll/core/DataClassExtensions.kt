@@ -1,7 +1,7 @@
 package com.llumiquinga.dmdll.core
 
 import com.llumiquinga.dmdll.data.network.entities.jikan.anime.FullInfoAnime
-import com.llumiquinga.dmdll.logic.usercase.jikan.entities.FullInfoAnimeLG
+import com.llumiquinga.dmdll.logic.entities.FullInfoAnimeLG
 
 
 

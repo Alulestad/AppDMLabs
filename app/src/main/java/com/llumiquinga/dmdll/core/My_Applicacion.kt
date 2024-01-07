@@ -3,7 +3,7 @@ package com.llumiquinga.dmdll.core
 import android.app.Application
 import com.llumiquinga.dmdll.data.local.repository.DBConnection
 import com.llumiquinga.dmdll.data.local.repository.DBRepository
-import com.llumiquinga.dmdll.logic.login.SingIn
+import com.llumiquinga.dmdll.logic.usercase.local.login.SingIn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

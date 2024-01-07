@@ -1,4 +1,4 @@
-package com.llumiquinga.dmdll.logic.login
+package com.llumiquinga.dmdll.logic.usercase.local.login
 
 import android.util.Log
 import androidx.lifecycle.lifecycleScope

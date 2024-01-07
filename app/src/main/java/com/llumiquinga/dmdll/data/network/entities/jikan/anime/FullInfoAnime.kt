@@ -1,13 +1,13 @@
 package com.llumiquinga.dmdll.data.network.entities.jikan.anime
 
-import com.llumiquinga.dmdll.logic.usercase.jikan.entities.FullInfoAnimeLG
+import com.llumiquinga.dmdll.logic.entities.FullInfoAnimeLG
 
 data class FullInfoAnime(
     val `data`: Data
 )
 
 
-fun FullInfoAnime.getFullInfoAnimeLG(): FullInfoAnimeLG{
+fun FullInfoAnime.getFullInfoAnimeLG(): FullInfoAnimeLG {
     val a= FullInfoAnimeLG()
 
     a.id=this.data.mal_id

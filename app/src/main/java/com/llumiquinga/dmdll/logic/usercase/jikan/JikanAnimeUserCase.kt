@@ -4,19 +4,19 @@ import android.util.Log
 import com.llumiquinga.dmdll.data.network.endpoints.AnimeEndPoint
 import com.llumiquinga.dmdll.data.network.entities.jikan.anime.getFullInfoAnimeLG
 import com.llumiquinga.dmdll.data.network.repository.RetrofitBase
-import com.llumiquinga.dmdll.logic.usercase.jikan.entities.FullInfoAnimeLG
+import com.llumiquinga.dmdll.logic.entities.FullInfoAnimeLG
 
 import com.llumiquinga.dmdll.ui.core.Constants
 
 class JikanAnimeUserCase {
 
-    fun getFullAnimeInfo(nameAnime:Int):FullInfoAnimeLG{
+    fun getFullAnimeInfo(nameAnime:Int): FullInfoAnimeLG {
         val baseService= RetrofitBase.getRetrofitJikanConnection()
         val service= baseService.create(AnimeEndPoint::class.java) //creo mi servicio
         val call= service.getAnimeFullInfo(nameAnime) //ahora si podria acceder a travez de servicio a los metodos
         //me revuelve un response de FullInfoAnime
 
-        var infoAnime:FullInfoAnimeLG= FullInfoAnimeLG()
+        var infoAnime: FullInfoAnimeLG = FullInfoAnimeLG()
         if(call.isSuccessful){
 
             val a=call.body()!!
