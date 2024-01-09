@@ -18,6 +18,7 @@ import com.llumiquinga.dmdll.data.local.entities.Users
 import com.llumiquinga.dmdll.databinding.ActivityMainBinding
 import com.llumiquinga.dmdll.logic.usercase.local.login.SingIn
 import com.llumiquinga.dmdll.logic.usercase.jikan.JikanAnimeUserCase
+import com.llumiquinga.dmdll.logic.usercase.jikan.JikanGetTopAnimesUserCase
 import com.llumiquinga.dmdll.ui.adapters.UsersAdapter
 import com.llumiquinga.dmdll.ui.core.Constants
 import com.llumiquinga.dmdll.ui.fragments.FragmentFavorites
@@ -48,7 +49,17 @@ class MainActivity : AppCompatActivity() {
 
         val a=JikanAnimeUserCase()
         //aca ya llama automaticamente como si fuera con un invoke
+        getAllTopAnimes()
 
+    }
+
+    private fun getAllTopAnimes() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val x=JikanGetTopAnimesUserCase().getResponse()
+            Log.d(Constants.TAG,"x.pagination.toString()")
+            Log.d(Constants.TAG,x.pagination.toString())
+            Log.d(Constants.TAG,x.data[0].synopsis)
+        }
 
     }
 
@@ -64,7 +75,20 @@ class MainActivity : AppCompatActivity() {
                     LinearLayoutManager.VERTICAL,false)
             binding.pbPrincipal.visibility= View.GONE
         }
+    }
 
+    private fun initRecyclerViewTopAnime() {
+        lifecycleScope.launch (Dispatchers.Main){
+            val usrs= withContext(Dispatchers.IO){getUsersList()}
+            Log.d(Constants.TAG,"MainActivity>initRecyclerViewTopAnime> "+usrs)
+            Log.d(Constants.TAG,"MainActivity>initRecyclerViewTopAnime> 1 Nombre>"+usrs.first().firsName)
+            val adapter:UsersAdapter= UsersAdapter(usrs)
+            binding.rvUsers.adapter=adapter
+            binding.rvUsers.layoutManager=
+                LinearLayoutManager(this@MainActivity,
+                    LinearLayoutManager.VERTICAL,false)
+            binding.pbPrincipal.visibility= View.GONE
+        }
     }
 
     private fun checkDataBase() {

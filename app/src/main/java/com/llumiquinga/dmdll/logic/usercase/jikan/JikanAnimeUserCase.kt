@@ -11,12 +11,16 @@ import com.llumiquinga.dmdll.ui.core.Constants
 class JikanAnimeUserCase {
 
     fun getFullAnimeInfo(nameAnime:Int): FullInfoAnimeLG {
+
+        var infoAnime: FullInfoAnimeLG = FullInfoAnimeLG()
+
+        try {
         val baseService= RetrofitBase.getRetrofitJikanConnection()
         val service= baseService.create(AnimeEndPoint::class.java) //creo mi servicio
         val call= service.getAnimeFullInfo(nameAnime) //ahora si podria acceder a travez de servicio a los metodos
         //me revuelve un response de FullInfoAnime
 
-        var infoAnime: FullInfoAnimeLG = FullInfoAnimeLG()
+
         if(call.isSuccessful){
 
             val a=call.body()!!
@@ -34,7 +38,9 @@ class JikanAnimeUserCase {
         }else{
             Log.d(Constants.TAG, "Error en el llamado a la API de Jikan")
         }
-
+        }catch (ex:Exception){
+            Log.e(Constants.TAG, ex.stackTraceToString())
+        };
         return infoAnime
     }
 
