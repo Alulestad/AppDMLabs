@@ -19,6 +19,9 @@ interface UsersDAO {
     @Insert
     fun insertUser(users:List<Users>)
 
+    @Insert
+    fun insertOnlyUser(user:Users)
+
     @Update
     fun updateUser(user:List<Users>)
 

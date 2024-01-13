@@ -77,19 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initRecyclerViewTopAnime() {
-        lifecycleScope.launch (Dispatchers.Main){
-            val usrs= withContext(Dispatchers.IO){getUsersList()}
-            Log.d(Constants.TAG,"MainActivity>initRecyclerViewTopAnime> "+usrs)
-            Log.d(Constants.TAG,"MainActivity>initRecyclerViewTopAnime> 1 Nombre>"+usrs.first().firsName)
-            val adapter:UsersAdapter= UsersAdapter(usrs)
-            binding.rvUsers.adapter=adapter
-            binding.rvUsers.layoutManager=
-                LinearLayoutManager(this@MainActivity,
-                    LinearLayoutManager.VERTICAL,false)
-            binding.pbPrincipal.visibility= View.GONE
-        }
-    }
+
 
     private fun checkDataBase() {
         lifecycleScope.launch(Dispatchers.Main) {

@@ -53,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         binding.btnLogin.setOnClickListener {
+
             val check:Int= SingIn(My_Applicacion.getConnectionDB()!!).checkUserAndPasswordForma4(
                 binding.txtUsuario.text.toString(),
                 binding.txtPass.text.toString()

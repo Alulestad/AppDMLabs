@@ -35,6 +35,11 @@ data class Users (
 
     }
 
+    constructor(userName:String,password: String,profile: String? ,firsName:String,lastName:String):this(userName,password,firsName,lastName){
+        this.profile=profile
+
+    }
+
 
 
 
