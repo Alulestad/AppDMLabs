@@ -19,6 +19,7 @@ import com.llumiquinga.dmdll.databinding.ActivityMainBinding
 import com.llumiquinga.dmdll.logic.usercase.local.login.SingIn
 import com.llumiquinga.dmdll.logic.usercase.jikan.JikanAnimeUserCase
 import com.llumiquinga.dmdll.logic.usercase.jikan.JikanGetTopAnimesUserCase
+import com.llumiquinga.dmdll.ui.adapters.AnimeTopAdapter
 import com.llumiquinga.dmdll.ui.adapters.UsersAdapter
 import com.llumiquinga.dmdll.ui.core.Constants
 import com.llumiquinga.dmdll.ui.fragments.FragmentFavorites
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         initListeners()
         checkDataBase()
         initRecyclerView()
+        initRecyclerView1()
 
         val a=JikanAnimeUserCase()
         //aca ya llama automaticamente como si fuera con un invoke
@@ -53,15 +55,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getAllTopAnimes() {
+    /*private fun getAllTopAnimes() {
         lifecycleScope.launch(Dispatchers.IO) {
             val x=JikanGetTopAnimesUserCase().getResponse()
             Log.d(Constants.TAG,"x.pagination.toString()")
-            Log.d(Constants.TAG,x.pagination.toString())
-            Log.d(Constants.TAG,x.data[0].synopsis)
+            //Log.d(Constants.TAG,x.pagination.toString())
+            //Log.d(Constants.TAG,x.data[0].synopsis)
         }
 
-    }
+    }*/
 
     private fun initRecyclerView() {
         lifecycleScope.launch (Dispatchers.Main){
@@ -76,6 +78,39 @@ class MainActivity : AppCompatActivity() {
             binding.pbPrincipal.visibility= View.GONE
         }
     }
+
+
+    private fun getAllTopAnimes(){
+        //binding.animationView.visibility=View.VISIBLE.
+    }
+    private fun initRecyclerView1() {
+
+        lifecycleScope.launch (Dispatchers.Main){
+            //binding.animationView.visibility=View.VISIBLE.
+            var jikan =JikanGetTopAnimesUserCase()
+            val animes= withContext(Dispatchers.IO){jikan.getResponse()}
+            animes.onSuccess{animes->
+                Log.d(Constants.TAG,"MainActivity>initRecyclerView1>animes "+animes.toString())
+                val adapter= AnimeTopAdapter(animes.data)
+                binding.rvUsers.adapter=adapter
+                binding.rvUsers.layoutManager=
+                    LinearLayoutManager(
+                        this@MainActivity,
+                        LinearLayoutManager.VERTICAL,
+                        false)
+
+
+            }
+
+            animes.onFailure{
+                //manejo de errores en la UI
+
+            }
+
+            binding.pbPrincipal.visibility= View.GONE
+        }
+    }
+
 
 
 
@@ -104,6 +139,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
+        //Inicio recargar
+        binding.swiperv.setOnRefreshListener {
+            val adapter= AnimeTopAdapter(listOf())
+            binding.rvUsers.adapter=adapter
+            binding.rvUsers.layoutManager=
+                LinearLayoutManager(
+                    this@MainActivity,
+                    LinearLayoutManager.VERTICAL,
+                    false)
+            initRecyclerView1()
+            binding.swiperv.isRefreshing=false
+
+        }
+
+        //Fin recargar
+
+
         // uso del ipify
         Ipfy.init(this) // this is a context of application
         //or you can also pass IpfyClass type to get either IPv4 address only or universal address IPv4/v6 as

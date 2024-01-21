@@ -76,6 +76,12 @@ dependencies {
     //Retrofit (API)
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
-    //Gson (converter)
+    //Retrofit - Gson (converter)
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //Swipe recyclerview
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+
+
 }

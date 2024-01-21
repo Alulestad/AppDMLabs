@@ -32,9 +32,9 @@ class AnimesActivity : AppCompatActivity() {
         binding=ActivityAnimesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initRecyclerViewTopAnime()
+        //initRecyclerViewTopAnime()
     }
-
+/*
     private fun initRecyclerViewTopAnime() {
         lifecycleScope.launch (Dispatchers.Main){
             val dataA= withContext(Dispatchers.IO){getAllTopAnimes()}
@@ -47,7 +47,8 @@ class AnimesActivity : AppCompatActivity() {
                     LinearLayoutManager.VERTICAL,false)
             binding.pbPrincipal.visibility= View.GONE
         }
-    }
+    }}
+    */
 
     suspend fun getAnimeList() :List<Users>{
         delay(1000)
@@ -59,10 +60,11 @@ class AnimesActivity : AppCompatActivity() {
             .getAllUsers()
     }
 
+    /*
     private suspend fun getAllTopAnimes():List<Data> {
             val x= JikanGetTopAnimesUserCase().getResponse().data
         return x
     }
-
+*/
 
 }

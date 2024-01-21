@@ -12,9 +12,8 @@ import com.llumiquinga.dmdll.ui.core.Constants
 
 class JikanGetTopAnimesUserCase {
 
-    suspend fun getResponse(): TopAnime {
-
-        val result:Result<TopAnime>
+    suspend fun getResponse(): Result<TopAnime> {
+        var result:Result<TopAnime>?=null
         var infoAnime = TopAnime() //TopAnimesDataClass()
 
         try {
@@ -22,18 +21,21 @@ class JikanGetTopAnimesUserCase {
             val service= baseService.create(TopAnimesEndPoint::class.java) //creo mi servicio
             val call= service.getAllTopAnimes() //ahora si podria acceder a travez de servicio a los metodos
 
-
             if(call.isSuccessful){
                 val a=call.body()!! //es una lista de top animes
                 infoAnime=a
-
+                result = Result.success(infoAnime)
             }else{
                 Log.d(Constants.TAG, "Error en el llamado a la API de Jikan")
+                result=Result.failure(Exception("Error en el llamado a la API de Jikan"))
             }
         }catch (ex:Exception){
             Log.e(Constants.TAG, ex.stackTraceToString())
+            result=Result.failure(Exception(ex))
+
         };
-        return infoAnime
+        return result!!
+
     }
 
 
