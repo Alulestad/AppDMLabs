@@ -60,7 +60,8 @@ dependencies {
     //Recyclerview
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
-
+    //coil es para agregar las imagenes
+    implementation("io.coil-kt:coil:2.5.0")
 
 
 }

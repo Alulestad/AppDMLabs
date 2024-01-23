@@ -12,6 +12,8 @@ import com.examenp.recliclerview.ui.adapters.UsersAdapter
 class MainActivity : AppCompatActivity() {
 
     private var usersList:MutableList<Users> = ArrayList<Users>()
+    private var count : Int = 1
+
     private lateinit var binding:ActivityMainBinding
     private var usersAdapter = UsersAdapter()// =UsersAdapter(usersList.toList())
 
@@ -43,16 +45,20 @@ class MainActivity : AppCompatActivity() {
         binding.btnInsert.setOnClickListener {
             val us = Users(
                 1,
-                "Daniel",
+                "Daniel $count",
                 "Estudiante",
-                "https://www.google.com/search?sca_esv=b1246719c6e8d448&rlz=1C1VDKB_esEC1083EC1083&sxsrf=ACQVn088Y-nUmnSZ8k8RdJ05Fme0ZkZOPw:1705757571748&q=imagen+estudiante&tbm=isch&source=lnms&sa=X&ved=2ahUKEwjR-IuRiuyDAxWsRTABHXE2D5sQ0pQJegQIDBAB&biw=1707&bih=811&dpr=1.13#imgrc=cIwiQ2DmZXRWXM"
+                "https://m.media-amazon.com/images/I/51iw5yGdfGL.jpg"
             )
-
+            count++
             usersList.add(us)
 
             Log.d("List", usersList.toString())
             usersAdapter.listUsers=usersList
-            usersAdapter.notifyDataSetChanged() //esto es lo que me permite vizualizar los insert
+            usersAdapter.notifyDataSetChanged() //esto informa al adaptador que existe un cambio.
+                                                //y este se informa a travez de la lista mutable
+                                                //la desventaja es que envia todo y no discrimina
+                                                //si exsite un elemento nuevo o no.
+
         }
     }
 }

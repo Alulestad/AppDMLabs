@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.examenp.recliclerview.R
 import com.examenp.recliclerview.data.entities.Users
 import com.examenp.recliclerview.databinding.ItemsUsersBinding
@@ -18,7 +19,7 @@ class UsersAdapter():RecyclerView.Adapter<UsersAdapter.ViewHolderUsers>() {
         fun render(item: Users){
             binding.txtUserName.text=item.name
             binding.txtUserDesc.text=item.desc
-
+            binding.imgUser.load(item.img)
         }
 
     }
