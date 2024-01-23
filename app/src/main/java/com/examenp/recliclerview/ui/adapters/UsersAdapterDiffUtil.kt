@@ -4,17 +4,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
 import com.examenp.recliclerview.R
 import com.examenp.recliclerview.data.entities.Users
 import com.examenp.recliclerview.databinding.ItemsUsersBinding
 
-class UsersAdapter(
+class UsersAdapterDiffUtil(
     private val onDeleteItem:(Int) -> Unit,
     private val onSelectItem:(Users)->Unit
-):RecyclerView.Adapter<UsersAdapter.ViewHolderUsers>() {
-    var listUsers:List<Users> = listOf()
+):ListAdapter<Users,UsersAdapterDiffUtil.ViewHolderUsers>(DiffUtilUserCallback) {
+
 
     class ViewHolderUsers(view: View) :RecyclerView.ViewHolder(view){
 
@@ -43,12 +46,23 @@ class UsersAdapter(
 
     }
 
-    override fun getItemCount(): Int =  listUsers.size
 
     override fun onBindViewHolder(holder: ViewHolderUsers, position: Int) {
 
-        holder.render(listUsers[position],onDeleteItem , onSelectItem)
+        holder.render(getItem(position),onDeleteItem , onSelectItem)
 
+    }
+
+
+}
+
+private object DiffUtilUserCallback : DiffUtil.ItemCallback<Users>() {
+    override fun areItemsTheSame(oldItem: Users, newItem: Users): Boolean {
+        return (oldItem.id==newItem.id)
+    }
+
+    override fun areContentsTheSame(oldItem: Users, newItem: Users): Boolean {
+        return (oldItem==newItem)
     }
 
 
