@@ -9,8 +9,8 @@ import retrofit2.http.Path
 interface AnimeEndPoint {
 
 
-    @GET("anime/{id}/full")
-    fun getAnimeFullInfo(@Path("id") name:Int):Response<FullInfoAnime>
+    @GET("anime/{id}/full/")
+    suspend fun getAnimeFullInfo(@Path("id") name:Int):Response<FullInfoAnime>
     //response devuelve la cabezera y el cuerpo.
 
 

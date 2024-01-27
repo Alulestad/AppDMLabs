@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.DetailFragment">
+    tools:context=".ui.fragments.DetailFragment"
+    android:orientation="vertical"
+    android:id="@+id/linear"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/txtIdAnime"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        tools:text="Id anime"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
 
-</FrameLayout>
+
+        />
+    <TextView
+        android:id="@+id/txtTitleEnglish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Title english"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
+
+
+        />
+    <TextView
+        android:id="@+id/txtDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Duracion"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
+
+
+        />
+    <TextView
+        android:id="@+id/txtEpisodes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Episodios"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
+
+
+        />
+
+    <TextView
+        android:id="@+id/txtYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Año"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
+
+
+        />
+    <TextView
+        android:id="@+id/txtType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Tipo"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
+
+
+        />
+    <TextView
+        android:id="@+id/txtUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Url"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
+
+
+        />
+
+</LinearLayout>

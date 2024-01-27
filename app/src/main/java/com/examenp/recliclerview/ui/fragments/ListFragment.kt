@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.examenp.recliclerview.R
 import com.examenp.recliclerview.databinding.FragmentListBinding
@@ -122,16 +123,10 @@ class ListFragment : Fragment() {
     }
 
     private fun selectAnime(anime: FullInfoAnimeLG){
-        Snackbar
-            .make(requireActivity(),binding.rvUsers,anime.name, Snackbar.LENGTH_LONG)
-            .show()
-
-        /*
-        val i=Intent(this,llegada)
-        i.putExtra("usuarioID", user.id)
-        startActivity(i)
-
-         */
+       findNavController()
+           .navigate(ListFragmentDirections
+               .actionListFragmentToDetailFragment(idAnime = anime.id)
+           )
     }
 
 
