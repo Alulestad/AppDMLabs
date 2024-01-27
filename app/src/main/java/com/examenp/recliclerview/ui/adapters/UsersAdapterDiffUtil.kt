@@ -12,23 +12,24 @@ import coil.load
 import com.examenp.recliclerview.R
 import com.examenp.recliclerview.data.entities.Users
 import com.examenp.recliclerview.databinding.ItemsUsersBinding
+import com.examenp.recliclerview.logic.entities.FullInfoAnimeLG
 
 class UsersAdapterDiffUtil(
     private val onDeleteItem:(Int) -> Unit,
-    private val onSelectItem:(Users)->Unit
-):ListAdapter<Users,UsersAdapterDiffUtil.ViewHolderUsers>(DiffUtilUserCallback) {
+    private val onSelectItem:(FullInfoAnimeLG)->Unit
+):ListAdapter<FullInfoAnimeLG,UsersAdapterDiffUtil.ViewHolderUsers>(DiffUtilUserCallback) {
 
 
     class ViewHolderUsers(view: View) :RecyclerView.ViewHolder(view){
 
         private var binding: ItemsUsersBinding=ItemsUsersBinding.bind(view)
         fun render(
-            item: Users
+            item: FullInfoAnimeLG
             ,onDeleteItem:(Int) -> Unit
-            , onSelectItem:(Users)->Unit  ){
+            , onSelectItem:(FullInfoAnimeLG)->Unit  ){
             binding.txtUserName.text=item.name
-            binding.txtUserDesc.text=item.desc
-            binding.imgUser.load(item.img)
+            binding.txtUserDesc.text=item.synopsis
+            binding.imgUser.load(item.big_image)
 
             binding.btnBorrar.setOnClickListener {
                 onDeleteItem(adapterPosition)
@@ -56,12 +57,12 @@ class UsersAdapterDiffUtil(
 
 }
 
-private object DiffUtilUserCallback : DiffUtil.ItemCallback<Users>() {
-    override fun areItemsTheSame(oldItem: Users, newItem: Users): Boolean {
+private object DiffUtilUserCallback : DiffUtil.ItemCallback<FullInfoAnimeLG>() {
+    override fun areItemsTheSame(oldItem: FullInfoAnimeLG, newItem: FullInfoAnimeLG): Boolean {
         return (oldItem.id==newItem.id)
     }
 
-    override fun areContentsTheSame(oldItem: Users, newItem: Users): Boolean {
+    override fun areContentsTheSame(oldItem: FullInfoAnimeLG, newItem: FullInfoAnimeLG): Boolean {
         return (oldItem==newItem)
     }
 
