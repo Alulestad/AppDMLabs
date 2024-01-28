@@ -64,17 +64,7 @@
 
 
         />
-    <TextView
-        android:id="@+id/txtType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Tipo"
-        android:gravity="center"
-        android:layout_marginTop="15dp"
-        android:textSize="24sp"
 
-
-        />
     <TextView
         android:id="@+id/txtUrl"
         android:layout_width="match_parent"
@@ -85,6 +75,29 @@
         android:textSize="24sp"
 
 
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <TextView
+            android:id="@+id/sinopsis"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Refrescar"
+    />
+
+    <ImageView
+        android:id="@+id/imgAnime"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
         />
 
 </LinearLayout>
