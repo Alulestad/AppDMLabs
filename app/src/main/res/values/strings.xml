@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="biometric_succes">Presione para autenticarse</string>
     <string name="biometric_no_harware">No posee un sensor de huellas</string>
+    <string name="no_user">El usuario no esta logueado</string>
 </resources>

@@ -2,6 +2,11 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
+
+    //firebase
+    //id("com.android.application") ya esta implementado
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -91,4 +96,18 @@ dependencies {
     //implementa el siclo de vida del view model
     implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("androidx.activity:activity:1.8.2")
+
+    //firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+    implementation("com.google.firebase:firebase-analytics")
+
+    //Firebase Authentication en Android
+        // Import the BoM for the Firebase platform
+    //implementation(platform("com.google.firebase:firebase-bom:32.3.1")) ya esta
+        // Add the dependency for the Firebase Authentication library
+        // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-auth-ktx")
+
+
+
 }

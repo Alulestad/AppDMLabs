@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "219473873677",
+    "project_id": "fir-app-7a700",
+    "storage_bucket": "fir-app-7a700.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219473873677:android:be54482e201fc0f2667e44",
+        "android_client_info": {
+          "package_name": "com.examenp.recliclerview"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoXK2T7CcODnLVBpqlbLlCuGkZkB5xIA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

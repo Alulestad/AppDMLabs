@@ -15,12 +15,23 @@ import androidx.biometric.BiometricManager.Authenticators
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.examenp.recliclerview.R
+import com.examenp.recliclerview.databinding.ActivityLoginBinding
 import com.examenp.recliclerview.ui.viewmodels.LoginViewModel
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth //OJOOOOOOOOOOO ktx
+import com.google.firebase.ktx.Firebase
 import java.util.concurrent.Executor
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var btnFinger:ImageView
-    private lateinit var txtInfo:TextView
+
+    //firebase
+    private lateinit var auth: FirebaseAuth
+
+    private lateinit var binding:ActivityLoginBinding
+
+    //private lateinit var btnFinger:ImageView
+    //private lateinit var txtInfo:TextView
 
     private lateinit var executor: Executor //permite ejecutar app en segundo plano
         //necesita hilos
@@ -31,7 +42,14 @@ class LoginActivity : AppCompatActivity() {
     private val loginViewModel: LoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding=ActivityLoginBinding.inflate(layoutInflater)
+
+        //setContentView(R.layout.activity_login)
+        setContentView(binding.root)
+
+        // Initialize Firebase Auth
+        auth = Firebase.auth
+
 
         initListener()
         initObservables()
@@ -40,50 +58,60 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            binding.etxtUser.visibility= View.GONE
+            binding.etxtPassword.visibility= View.GONE
+
+            binding.imgFinger.visibility=View.VISIBLE
+            binding.txtInfo.text=getString(R.string.biometric_succes)
+
+            startActivity(Intent(this,MainActivity::class.java))
+        }else{
+
+            binding.imgFinger.visibility= View.GONE
+            binding.txtInfo.text=getString(R.string.no_user)
+        }
+
+    }
+
     private fun initListener(){
 
-        btnFinger=findViewById<ImageView>(R.id.imgFinger)
-        txtInfo=findViewById(R.id.txtInfo)
-
-        btnFinger.setOnClickListener{
-
+        binding.imgFinger
+        binding.imgFinger.setOnClickListener{
             biometricPrompt.authenticate(promptInfo)
+
+        }
+
+        binding.btnSaveUser.setOnClickListener {
+            createNewUsers(binding.etxtUser.text.toString(), binding.etxtPassword.text.toString())
+        }
+        binding.btnSignUser.setOnClickListener {
+
+            SignInUsers(binding.etxtUser.text.toString(),binding.etxtPassword.text.toString())
+
         }
     }
 
-    private fun AutenticationVariables(){ //creo mis variables
+    private fun AutenticationVariables(){
         executor = ContextCompat.getMainExecutor(this)
-        //la activiti principal va ejecutar esto,y permite trabajar en segundo plano
-
-        biometricPrompt = BiometricPrompt(this, executor,//porque el biometric pront necesita ejecutarse en un segundo plano.
-            object : BiometricPrompt.AuthenticationCallback() { //callback es un proceso en segundo plano y devuelve asincronicamente.
-                override fun onAuthenticationFailed() {
-                    super.onAuthenticationFailed()
-                    Log.e("MY_APP_TAG", "Autentication falied")
-                    //podria poner un snack bar que me ponga esto
-
-                }
-
-                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                    super.onAuthenticationError(errorCode, errString)
-                    Log.e("MY_APP_TAG", "Autentication error")
-
-                }
+        biometricPrompt = BiometricPrompt(this, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
 
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                    startActivity(Intent(this@LoginActivity,MainActivity2::class.java))
                 }
-
             })
 
-        promptInfo = BiometricPrompt.PromptInfo.Builder()//patron builder
+        promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle("Biometric login for my app")
             .setSubtitle("Log in using your biometric credential")
-            .setAllowedAuthenticators(Authenticators.BIOMETRIC_STRONG or Authenticators.DEVICE_CREDENTIAL) //aca yo podria especificar si quiero solo con la huella o en conjunto
-            //.setNegativeButtonText("Cancel") // entonces aca tengo la opcion de cancel
+            .setAllowedAuthenticators(Authenticators.BIOMETRIC_STRONG or Authenticators.DEVICE_CREDENTIAL)
             .build()
-
 
     }
 
@@ -93,16 +121,16 @@ class LoginActivity : AppCompatActivity() {
             //it=code
             when(it){
                 BiometricManager.BIOMETRIC_SUCCESS->{
-                    btnFinger.visibility= View.VISIBLE
-                    txtInfo.text=getString( R.string.biometric_succes)
+                    //binding.imgFinger.visibility= View.VISIBLE
+                    binding.txtInfo.text=getString( R.string.biometric_succes)
                     Log.d("MY_APP_TAG", "App can authenticate using biometrics.")
                 }
                 BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE->{
-                    txtInfo.text=getString( R.string.biometric_no_harware)
+                    binding.txtInfo.text=getString( R.string.biometric_no_harware)
                     Log.e("MY_APP_TAG", "No biometric features available on this device.")
                 }
                 BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE->{
-                    txtInfo.text=getString( R.string.biometric_no_harware)+"_HW"
+                    binding.txtInfo.text=getString( R.string.biometric_no_harware)+"_HW"
                     Log.e("MY_APP_TAG", "Biometric features are currently unavailable.")
                 }
                 BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED->{
@@ -117,6 +145,40 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun createNewUsers(user:String, password:String){
+        auth.createUserWithEmailAndPassword(user,password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("TAG", "createUserWithEmail:success")
+                    val user = auth.currentUser
+                    Snackbar.make(this,binding.etxtUser,"CreateUserWithEmail: Success",Snackbar.LENGTH_LONG).show()
+                    binding.etxtUser.text.clear()
+                    binding.etxtPassword.text.clear()
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Snackbar.make(this,binding.etxtUser,task.exception!!.message.toString(),Snackbar.LENGTH_LONG).show()
+
+                }
+            }
+    }
+    private fun SignInUsers(email:String,password:String){
+
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    startActivity(Intent(this@LoginActivity,MainActivity2::class.java))
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("TAG", "signInWithEmail:failure", task.exception)
+                    Snackbar.make(this,binding.etxtUser,"signInWithEmail:failure",Snackbar.LENGTH_LONG).show()
+
+                }
+            }
     }
 
 }

@@ -7,4 +7,7 @@ plugins {
     //se usa false porque quiere decir que esta latente pero no lo aplica
     // si quisiera programar para kotlin y java solo seria androidx.navigation.safeargs
 
+
+    //firebase
+    id("com.google.gms.google-services") version "4.4.0" apply false
 }
