@@ -9,11 +9,13 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.examenp.recliclerview.R
+import com.examenp.recliclerview.ui.viewmodels.LoginViewModel
 import java.util.concurrent.Executor
 
 class LoginActivity : AppCompatActivity() {
@@ -25,13 +27,17 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var biometricPrompt: BiometricPrompt   // maja los eventos del biometrico
     private lateinit var promptInfo: BiometricPrompt.PromptInfo //es el dialogo, lo que se meustra
 
+
+    private val loginViewModel: LoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         initListener()
-        checkBiometric()
+        initObservables()
         AutenticationVariables()
+        loginViewModel.checkBiometric(this)
+
     }
 
     private fun initListener(){
@@ -75,40 +81,42 @@ class LoginActivity : AppCompatActivity() {
             .setTitle("Biometric login for my app")
             .setSubtitle("Log in using your biometric credential")
             .setAllowedAuthenticators(Authenticators.BIOMETRIC_STRONG or Authenticators.DEVICE_CREDENTIAL) //aca yo podria especificar si quiero solo con la huella o en conjunto
-            .setNegativeButtonText("Cancel") // entonces aca tengo la opcion de cancel
+            //.setNegativeButtonText("Cancel") // entonces aca tengo la opcion de cancel
             .build()
 
 
     }
 
-    private fun checkBiometric(){ //checa el biometrico
-        val biometricManager = BiometricManager.from(this)
-        when (biometricManager.canAuthenticate(Authenticators.BIOMETRIC_STRONG or Authenticators.DEVICE_CREDENTIAL)) {
-            BiometricManager.BIOMETRIC_SUCCESS ->{
-                btnFinger.visibility= View.VISIBLE
-                txtInfo.text=getString( R.string.biometric_succes)
-                Log.d("MY_APP_TAG", "App can authenticate using biometrics.")
+    private fun initObservables(){
 
-            }
-
-            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> {
-                txtInfo.text=getString( R.string.biometric_no_harware)
-                Log.e("MY_APP_TAG", "No biometric features available on this device.")
-            }
-            BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {
-                txtInfo.text=getString( R.string.biometric_no_harware)+"_HW"
-                Log.e("MY_APP_TAG", "Biometric features are currently unavailable.")
-            }
-            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> { //configuracion para mostrar la huella
-                // Prompts the user to create credentials that your app accepts.
-                val enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
-                    putExtra(Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
-                        Authenticators.BIOMETRIC_STRONG or Authenticators.DEVICE_CREDENTIAL)
+        loginViewModel.resultCheckBiometric.observe(this){
+            //it=code
+            when(it){
+                BiometricManager.BIOMETRIC_SUCCESS->{
+                    btnFinger.visibility= View.VISIBLE
+                    txtInfo.text=getString( R.string.biometric_succes)
+                    Log.d("MY_APP_TAG", "App can authenticate using biometrics.")
                 }
-                startActivityForResult(enrollIntent, 100)
+                BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE->{
+                    txtInfo.text=getString( R.string.biometric_no_harware)
+                    Log.e("MY_APP_TAG", "No biometric features available on this device.")
+                }
+                BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE->{
+                    txtInfo.text=getString( R.string.biometric_no_harware)+"_HW"
+                    Log.e("MY_APP_TAG", "Biometric features are currently unavailable.")
+                }
+                BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED->{
+                    val enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
+                        putExtra(
+                            Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
+                            BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
+                    }
+                    startActivityForResult(enrollIntent, 100)
                     //luego de configurar aparece en blanco porque no tiene un retorno (vista)
+                }
             }
         }
+
     }
 
 }
