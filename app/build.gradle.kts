@@ -85,5 +85,10 @@ dependencies {
     // LiveData
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 
+    //biometricos
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
 
+    //implementa el siclo de vida del view model
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("androidx.activity:activity:1.8.2")
 }

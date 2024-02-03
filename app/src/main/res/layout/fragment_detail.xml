@@ -78,13 +78,19 @@
         />
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="100dp">
         <TextView
             android:id="@+id/sinopsis"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
+
     </ScrollView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="sdf"
+        />
 
     <Button
         android:id="@+id/btnRefresh"
