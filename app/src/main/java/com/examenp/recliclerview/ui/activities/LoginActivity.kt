@@ -23,6 +23,7 @@ import com.google.firebase.auth.ktx.auth //OJOOOOOOOOOOO ktx
 import com.google.firebase.ktx.Firebase
 import java.util.concurrent.Executor
 
+
 class LoginActivity : AppCompatActivity() {
 
     //firebase
@@ -39,7 +40,9 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var promptInfo: BiometricPrompt.PromptInfo //es el dialogo, lo que se meustra
 
 
-    private val loginViewModel: LoginViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels() //esto una inyecciond e dependencias
+        //este delegado by me da ya todo simple.
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityLoginBinding.inflate(layoutInflater)
@@ -94,6 +97,20 @@ class LoginActivity : AppCompatActivity() {
             SignInUsers(binding.etxtUser.text.toString(),binding.etxtPassword.text.toString())
 
         }
+
+        binding.btnNobels.setOnClickListener {
+            iniciarNobeles()
+        }
+    }
+
+    private fun iniciarNobeles() {
+        try {
+            startActivity(Intent(this@LoginActivity,NobelActivity::class.java))
+        }catch (e:Exception){
+            Log.w("TAG", "salto_a_nobeles:failure")
+            Snackbar.make(this,binding.etxtUser,"salto_a_nobeles:failure",Snackbar.LENGTH_LONG).show()
+        };
+
     }
 
     private fun AutenticationVariables(){
@@ -180,5 +197,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
+
+
 
 }

@@ -1,4 +1,4 @@
-package com.examenp.recliclerview.data.network.endpoints
+package com.examenp.recliclerview.data.network.endpoints.anime
 
 import com.examenp.recliclerview.data.network.entities.jikan.anime.Data
 import com.examenp.recliclerview.data.network.entities.jikan.anime.FullInfoAnime

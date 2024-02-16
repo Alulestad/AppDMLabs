@@ -1,7 +1,7 @@
 package com.examenp.recliclerview.logic.usercase.jikan
 
 import android.util.Log
-import com.examenp.recliclerview.data.network.endpoints.AnimeEndPoint
+import com.examenp.recliclerview.data.network.endpoints.anime.AnimeEndPoint
 import com.examenp.recliclerview.data.network.repository.RetrofitBase
 import com.examenp.recliclerview.logic.entities.FullInfoAnimeLG
 
@@ -10,7 +10,7 @@ import com.examenp.recliclerview.core.getFullInfoAnimeLG
 
 class JikanAnimeUserCase {
 
-    suspend fun getFullAnimeInfo(nameAnime:Int): Result<FullInfoAnimeLG> {
+    suspend fun invoke(nameAnime:Int): Result<FullInfoAnimeLG> {
 
         var result:Result<FullInfoAnimeLG>?=null
         var infoAnime: FullInfoAnimeLG = FullInfoAnimeLG()
@@ -44,9 +44,5 @@ class JikanAnimeUserCase {
         return result!!
     }
 
-    fun getAllTopsAnimes(){
-
-        //return List<FullInfoAnimeLG>() //"Listadod de animes"
-    }
 
 }

@@ -5,4 +5,5 @@
     <string name="biometric_succes">Presione para autenticarse</string>
     <string name="biometric_no_harware">No posee un sensor de huellas</string>
     <string name="no_user">El usuario no esta logueado</string>
+    <string name="carga_datos">carga de datos</string>
 </resources>

@@ -7,15 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.examenp.recliclerview.R
 import com.examenp.recliclerview.databinding.FragmentDetailBinding
 import com.examenp.recliclerview.logic.entities.FullInfoAnimeLG
 import com.examenp.recliclerview.logic.usercase.jikan.JikanAnimeUserCase
-import com.examenp.recliclerview.logic.usercase.jikan.JikanGetTopAnimesUserCase
 import com.examenp.recliclerview.ui.viewmodels.DetailViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
@@ -76,7 +73,7 @@ class DetailFragment : Fragment() {
         lifecycleScope.launch(Dispatchers.Main) {
 
             val resp= withContext(Dispatchers.IO){
-                JikanAnimeUserCase().getFullAnimeInfo(id)
+                JikanAnimeUserCase().invoke(id)
             }
             resp.onSuccess {
                     binding.txtIdAnime.text = id.toString()
