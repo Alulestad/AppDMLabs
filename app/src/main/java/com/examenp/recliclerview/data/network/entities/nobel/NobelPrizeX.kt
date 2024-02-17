@@ -1,5 +1,7 @@
 package com.examenp.recliclerview.data.network.entities.nobel
 
+import com.examenp.recliclerview.data.network.entities.nobelserializable.CategoryFullName
+
 data class NobelPrizeX(
     val awardYear: String,
     val category: Category,
@@ -10,3 +12,4 @@ data class NobelPrizeX(
     val prizeAmount: Int,
     val prizeAmountAdjusted: Int
 )
+

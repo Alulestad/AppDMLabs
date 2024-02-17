@@ -5,9 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.examenp.recliclerview.data.network.entities.nobel.NobelPrizeX
+import com.examenp.recliclerview.data.network.entities.nobelserializable.NobelPrizeXS
 import com.examenp.recliclerview.logic.entities.FullInfoAnimeLG
 import com.examenp.recliclerview.logic.usercase.jikan.JikanAnimeUserCase
 import com.examenp.recliclerview.logic.usercase.nobel.GetAllNobelPrizesUserCase
+import com.examenp.recliclerview.logic.usercase.nobel.GetAllNobelPrizesUserCaseKtor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -21,8 +23,8 @@ class NobelViewModel : ViewModel() {
     fun getAllNobelPrizes() { //Aca yo hago uncamenta la consulta en el IO
         viewModelScope.launch(Dispatchers.IO) {
 
-            val userCase = GetAllNobelPrizesUserCase()
-            val nobelFlow = userCase.invoke(1)
+            val userCase = GetAllNobelPrizesUserCaseKtor()
+            val nobelFlow = userCase.invoke(5)
 
             nobelFlow
                 .collect{nobel -> //recolecta lo de la tuberia

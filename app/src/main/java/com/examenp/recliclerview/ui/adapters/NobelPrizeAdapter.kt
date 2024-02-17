@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.examenp.recliclerview.R
-import com.examenp.recliclerview.data.network.entities.nobel.NobelPrize
 
 import com.examenp.recliclerview.data.network.entities.nobel.NobelPrizeX
 import com.examenp.recliclerview.databinding.NobelItemsBinding

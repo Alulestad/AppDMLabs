@@ -7,6 +7,8 @@ plugins {
     //id("com.android.application") ya esta implementado
     id("com.google.gms.google-services")
 
+    id("kotlinx-serialization")
+
 }
 
 android {
@@ -117,7 +119,38 @@ dependencies {
 
     implementation("com.airbnb.android:lottie:3.4.0")
 
+    //ktor
+    //val ktor_version= "2.3.8"
+    val ktor_version= "1.6.8"
 
+   /*
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-okhttp:$ktor_version")
+    //implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-client-android:$ktor_version")
+    implementation("io.ktor:ktor-client-json-jvm:$ktor_version")
+    implementation("io.ktor:ktor-client-serialization-jvm:$ktor_version")
+
+
+    implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
+    implementation("io.ktor:ktor-server-thymeleaf-jvm:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json.jvm:$ktor_version")
+    implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktor_version")
+    implementation("io.ktor:ktor-server-config-yaml-jvm:$ktor_version")
+    implementation("io.ktor:ktor-server-config-status-pages:$ktor_version")
+    implementation("io.ktor:ktor-server-default-headers:$ktor_version")
+    implementation("org.jetbrains.exposed:exposed-core:0.41.1")
+    implementation("org.jetbrains.exposed:exposed-jdbc:0.41.1")
+    implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
+    implementation("ch.qos.logback:logback-classic:1.4.14")
+*/
+
+    val ktorVersion = "2.3.6"
+    implementation("io.ktor:ktor-client-core:$ktorVersion")
+    implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+    implementation("io.ktor:ktor-client-logging:$ktorVersion")
 
 
 }
