@@ -1,6 +1,8 @@
 package com.examenp.recliclerview.ui.activities
 
 
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -16,7 +18,7 @@ class NobelActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNobelBinding
     private val adapter =NobelPrizeAdapter()
     private val viewModel:NobelViewModel by viewModels()
-    //private lateinit var dialog: AlertDialog
+    private lateinit var dialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +29,22 @@ class NobelActivity : AppCompatActivity() {
         initObservers()
         initRecyclerView()
 
-        viewModel.getAllNobelPrizes()
+        dialog=AlertDialog.Builder(this)
+            .setMessage("Desea iniciar con la carga de los datos")
+            .setTitle("Mensaje de informacion")
+            .setPositiveButton("Aceptar"){_,_->
+                viewModel.getAllNobelPrizes()
+            }
+            .setNegativeButton("Cancelar"){dialog,_->
+                dialog.dismiss()
+            }
+            .setCancelable(true) //si tocan afuera se cancela, false: si quero que tomen alguna de las opciones
+            .create()
+
+
+        dialog.show()
+
+
 
     }
 
@@ -35,13 +52,12 @@ class NobelActivity : AppCompatActivity() {
 
         viewModel.listItems.observe(this) { //Este es el observable
             binding.animationView.visibility = View.VISIBLE
-            adapter.listNobels=it
-            adapter.notifyDataSetChanged()
+            adapter.submitList(it)
             binding.animationView.visibility = View.GONE
         }
 
         viewModel.error.observe(this) {
-            adapter.listNobels = emptyList()
+            adapter.submitList(emptyList())
             adapter.notifyDataSetChanged()
         }
     }

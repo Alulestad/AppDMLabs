@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.examenp.recliclerview.R
+import com.examenp.recliclerview.data.network.entities.nobel.NobelPrize
 
 import com.examenp.recliclerview.data.network.entities.nobel.NobelPrizeX
 import com.examenp.recliclerview.databinding.NobelItemsBinding
 
 
-class NobelPrizeAdapter : RecyclerView.Adapter<NobelPrizeAdapter.AnimeVH>() {
+class NobelPrizeAdapter : ListAdapter<NobelPrizeX,NobelPrizeAdapter.AnimeVH>(DiffUtilNobelCallback) {
 
-    var listNobels:List<NobelPrizeX> =   emptyList()
 
     class AnimeVH(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -34,9 +34,8 @@ class NobelPrizeAdapter : RecyclerView.Adapter<NobelPrizeAdapter.AnimeVH>() {
         return AnimeVH(inflater.inflate(R.layout.nobel_items, parent, false))
     }
 
-    override fun getItemCount(): Int =listNobels.size
     override fun onBindViewHolder(holder: AnimeVH, position: Int) {
-        holder.render(listNobels[position])
+        holder.render(getItem(position))
     }
 }
 
