@@ -22,7 +22,7 @@ class GetAllNobelPrizesUserCase {
         val baseService = RetrofitBase.getNobelPrizesConnection()
         val service = baseService.create(NobelPrizeEndPoint::class.java)
 
-        while (newLimit<5){
+        while (newLimit<6){
             val call = service.getAllNobelPrizes(newLimit)
             try {
                 if (call.isSuccessful) {

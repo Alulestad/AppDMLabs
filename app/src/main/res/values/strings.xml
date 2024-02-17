@@ -7,7 +7,7 @@
     <string name="no_user">El usuario no esta logueado</string>
     <string name="carga_datos">carga de datos</string>
     <string name="cargar_datos">¿Desea iniciar con la carga de los datos?</string>
-    <string name="title_dialog">Mensaje de informacion</string>
+    <string name="title_dialog">Error en la carga</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
 </resources>
