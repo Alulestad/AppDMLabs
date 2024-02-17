@@ -30,12 +30,12 @@ class NobelActivity : AppCompatActivity() {
         initRecyclerView()
 
         dialog=AlertDialog.Builder(this)
-            .setMessage("Desea iniciar con la carga de los datos")
-            .setTitle("Mensaje de informacion")
-            .setPositiveButton("Aceptar"){_,_->
+            .setMessage(getString(R.string.cargar_datos))
+            .setTitle(getString(R.string.title_dialog))
+            .setPositiveButton(getString(R.string.aceptar)){ _, _->
                 viewModel.getAllNobelPrizes()
             }
-            .setNegativeButton("Cancelar"){dialog,_->
+            .setNegativeButton(getString(R.string.cancelar)){ dialog, _->
                 dialog.dismiss()
             }
             .setCancelable(true) //si tocan afuera se cancela, false: si quero que tomen alguna de las opciones
