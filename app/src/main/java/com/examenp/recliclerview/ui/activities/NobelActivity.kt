@@ -33,7 +33,7 @@ class NobelActivity : AppCompatActivity() {
 
     private fun initObservers() {
 
-        viewModel.listItems.observe(this) {
+        viewModel.listItems.observe(this) { //Este es el observable
             binding.animationView.visibility = View.VISIBLE
             adapter.listNobels=it
             adapter.notifyDataSetChanged()

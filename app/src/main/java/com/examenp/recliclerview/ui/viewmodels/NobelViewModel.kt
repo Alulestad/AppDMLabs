@@ -9,6 +9,7 @@ import com.examenp.recliclerview.logic.entities.FullInfoAnimeLG
 import com.examenp.recliclerview.logic.usercase.jikan.JikanAnimeUserCase
 import com.examenp.recliclerview.logic.usercase.nobel.GetAllNobelPrizesUserCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -17,18 +18,26 @@ class NobelViewModel : ViewModel() {
     val listItems = MutableLiveData<List<NobelPrizeX>>()
     val error = MutableLiveData<String>()
 
-    fun getAllNobelPrizes() {
+    fun getAllNobelPrizes() { //Aca yo hago uncamenta la consulta en el IO
         viewModelScope.launch(Dispatchers.IO) {
 
             val userCase = GetAllNobelPrizesUserCase()
-            val nobel = userCase.invoke(3)
+            val nobelFlow = userCase.invoke(1)
 
-            nobel.onSuccess {
-                listItems.postValue(it.toList())
+            nobelFlow
+                .collect{nobel -> //recolecta lo de la tuberia
+                nobel.onSuccess {
+                    listItems.postValue(it.toList())
+                }
+                nobel.onFailure {
+                    error.postValue(it.message.toString())
+                }
             }
-            nobel.onFailure {
-                error.postValue(it.message.toString())
-            }
+                // .runCatching {}en caso de generar errores
+                // .takeIf {  } tomar en caso de una condicion por ejemplo que sea menores al año 2010
+
+
+
         }
 
     }

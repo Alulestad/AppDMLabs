@@ -9,6 +9,6 @@ import retrofit2.http.Query
 
 interface NobelPrizeEndPoint {
     @GET("nobelPrizes")
-    //suspend fun getAllNobelPrizes(@Query("limit") limit: Int): Response<NobelPrize>
+    suspend fun getAllNobelPrizes(@Query("limit") limit: Int): Response<NobelPrize>
     suspend fun getAllNobelPrizes(): Response<NobelPrize>
 }

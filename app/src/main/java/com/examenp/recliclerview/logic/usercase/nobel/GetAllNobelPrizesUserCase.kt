@@ -15,28 +15,37 @@ import kotlinx.coroutines.flow.flow
 
 class GetAllNobelPrizesUserCase {
 
-    suspend fun invoke(limit: Int): Result<List<NobelPrizeX>> {
+    suspend fun invoke(limit: Int): Flow<Result<List<NobelPrizeX>>> = flow {
         var result: Result<List<NobelPrizeX>>? = null
+        var newLimit=limit
 
         val baseService = RetrofitBase.getNobelPrizesConnection()
         val service = baseService.create(NobelPrizeEndPoint::class.java)
-        val call = service.getAllNobelPrizes()
 
-        try {
-            if (call.isSuccessful) {
-                val a = call.body()!!
-                val nobelPrizes = a.nobelPrizes
-                result = Result.success(nobelPrizes)
-            } else {
-                val msg = "Error en el llamado a la API de Jikan"
-                result = Result.failure(Exception(msg))
-                Log.d(Constants.TAG, msg)
+        while (newLimit<5){
+            val call = service.getAllNobelPrizes(newLimit)
+            try {
+                if (call.isSuccessful) {
+                    val a = call.body()!!
+                    val nobelPrizes = a.nobelPrizes
+                    result = Result.success(nobelPrizes)
+                } else {
+                    val msg = "Error en el llamado a la API de Jikan"
+                    result = Result.failure(Exception(msg))
+                    Log.d(Constants.TAG, msg)
+                }
+            } catch (ex: Exception) {
+                Log.e(Constants.TAG, ex.stackTraceToString())
+                result = Result.failure(ex)
             }
-        } catch (ex: Exception) {
-            Log.e(Constants.TAG, ex.stackTraceToString())
-            result = Result.failure(ex)
+
+            emit(result!!)
+            delay(2000)
+            newLimit++
         }
-        return result!!
+
+
+
     }
 
 
