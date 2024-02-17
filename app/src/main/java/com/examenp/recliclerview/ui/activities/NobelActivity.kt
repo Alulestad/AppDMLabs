@@ -16,7 +16,7 @@ class NobelActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNobelBinding
     private val adapter =NobelPrizeAdapter()
     private val viewModel:NobelViewModel by viewModels()
-    private lateinit var dialog: AlertDialog
+    //private lateinit var dialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,18 +27,7 @@ class NobelActivity : AppCompatActivity() {
         initObservers()
         initRecyclerView()
 
-        dialog = AlertDialog.Builder(this)
-            .setTitle("title_dialog") //getString(R.string.title_dialog)
-            .setPositiveButton("aceptar") { _, _ ->  //getString(R.string.aceptar)
-                viewModel.getAllNobelPrizes()
-            }
-            .setNegativeButton("cancelar") { dialog, _ -> //getString(R.string.cancelar)
-                dialog.dismiss()
-            }
-            .setCancelable(false)
-            .create()
-
-        dialog.show()
+        viewModel.getAllNobelPrizes()
 
     }
 
@@ -46,12 +35,13 @@ class NobelActivity : AppCompatActivity() {
 
         viewModel.listItems.observe(this) {
             binding.animationView.visibility = View.VISIBLE
-            adapter.submitList(it)
+            adapter.listNobels=it
+            adapter.notifyDataSetChanged()
             binding.animationView.visibility = View.GONE
         }
 
         viewModel.error.observe(this) {
-            adapter.submitList(emptyList())
+            adapter.listNobels = emptyList()
             adapter.notifyDataSetChanged()
         }
     }

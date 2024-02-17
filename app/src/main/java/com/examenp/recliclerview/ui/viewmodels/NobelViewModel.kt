@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class NobelViewModel:ViewModel(){
+class NobelViewModel : ViewModel() {
 
     val listItems = MutableLiveData<List<NobelPrizeX>>()
     val error = MutableLiveData<String>()
@@ -21,16 +21,15 @@ class NobelViewModel:ViewModel(){
         viewModelScope.launch(Dispatchers.IO) {
 
             val userCase = GetAllNobelPrizesUserCase()
-            val nobelFlow = userCase.invoke(1)
+            val nobel = userCase.invoke(3)
 
-            nobelFlow.collect{ nobel ->
-                    nobel.onSuccess {
-                        listItems.postValue(it.toList())
-                    }
-                    nobel.onFailure {
-                        error.postValue(it.message.toString())
-                    }
-                }
+            nobel.onSuccess {
+                listItems.postValue(it.toList())
+            }
+            nobel.onFailure {
+                error.postValue(it.message.toString())
+            }
         }
+
     }
 }

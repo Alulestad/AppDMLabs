@@ -16,7 +16,8 @@ object RetrofitBase {
 
     fun getNobelPrizesConnection():Retrofit{ //ESTO ES UNCAMENTE UNA CONNECCION
         // (menoa de la mitad de camino del diagrama)
-        return Retrofit.Builder().baseUrl(NOBEL_PRIZES)
+        return Retrofit.Builder()
+            .baseUrl(NOBEL_PRIZES)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
