@@ -23,16 +23,21 @@ class NobelViewModel : ViewModel() {
 
     fun getAllNobelPrizes() { //Aca yo hago uncamenta la consulta en el IO
         viewModelScope.launch(Dispatchers.IO) {
-            val response=GetAllNobelPrizesKtor().invoke()
+            val userCase = GetAllNobelPrizesKtor()
+            val nobelFlow = userCase.invoke(5)
 
-            if(response.isNotEmpty()){
-                listItems.postValue(response)
-            }else{
-                error.postValue("Ocurrio un error al llamar a la API")
-            }
+            nobelFlow
+                .collect { nobel -> //recolecta lo de la tuberia
+                    nobel.onSuccess {
+                        listItems.postValue(it.toList())
+                    }
+                    nobel.onFailure {
+                        error.postValue(it.message.toString())
+                    }
+
+                }
 
         }
-
     }
 
     fun getAllNobelPrizesTrabajoEnGrupo() { //Aca yo hago uncamenta la consulta en el IO
