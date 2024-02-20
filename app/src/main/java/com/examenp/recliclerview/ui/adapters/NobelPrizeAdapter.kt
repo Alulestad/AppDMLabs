@@ -23,8 +23,8 @@ class NobelPrizeAdapter : ListAdapter<NobelPrizeX,NobelPrizeAdapter.AnimeVH>(Dif
         fun render(item: NobelPrizeX) {
             binding.imgNobel.load("https://openclipart.org/image/800px/167281")
             binding.txtAnio.text = item.awardYear
-            binding.txtCategoria.text = item.category.en
-            binding.txtNombre.text = item.laureates[0].fullName?.en
+            binding.txtCategoria.text = item.category!!.en
+            binding.txtNombre.text = item.laureates?.get(0)?.fullName?.en
         }
     }
 

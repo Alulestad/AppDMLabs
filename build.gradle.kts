@@ -11,5 +11,11 @@ plugins {
     //firebase
     id("com.google.gms.google-services") version "4.4.0" apply false
 
-    kotlin("plugin.serialization") version "1.8.10" apply false
+    //lo mio
+    //kotlin("plugin.serialization") version "1.8.10" apply false
+
+
+    //Inge
+    //id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22" apply false NO VALE es el sigueinte:
+    kotlin("plugin.serialization") version "1.9.22" apply false
 }

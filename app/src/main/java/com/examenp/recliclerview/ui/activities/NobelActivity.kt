@@ -22,6 +22,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class NobelActivity : AppCompatActivity() {
+
+    //Daniel Llumiquigna
+    //Jhonatan Altamirano
+    //Jimmy Ortega
+
     private lateinit var binding: ActivityNobelBinding
     private val adapter =NobelPrizeAdapter()
     private val viewModel:NobelViewModel by viewModels()
@@ -99,7 +104,7 @@ class NobelActivity : AppCompatActivity() {
         binding.edtFiltro.addTextChangedListener {filtro->
             //Log.d("TAG",filtro.toString())
             val listFilter= adapter.currentList.toList().filter {item->
-                item.category.en.contains(filtro.toString())
+                item.category?.en?.contains(filtro.toString())!!
             }
             adapter.submitList(listFilter)
 

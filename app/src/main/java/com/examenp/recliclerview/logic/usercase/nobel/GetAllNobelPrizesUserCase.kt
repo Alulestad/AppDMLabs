@@ -28,7 +28,7 @@ class GetAllNobelPrizesUserCase {
                 if (call.isSuccessful) {
                     val a = call.body()!!
                     val nobelPrizes = a.nobelPrizes
-                    result = Result.success(nobelPrizes)
+                    result = Result.success(nobelPrizes!!)
                 } else {
                     val msg = "Error en el llamado a la API de Jikan"
                     result = Result.failure(Exception(msg))

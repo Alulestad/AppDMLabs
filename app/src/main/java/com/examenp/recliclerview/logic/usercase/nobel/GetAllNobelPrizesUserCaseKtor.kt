@@ -7,6 +7,7 @@ import com.examenp.recliclerview.core.Constants
 import com.examenp.recliclerview.data.network.ApiOperation
 import com.examenp.recliclerview.data.network.KtorClientNobel
 import com.examenp.recliclerview.data.network.entities.nobel.Category
+import com.examenp.recliclerview.data.network.entities.nobel.CategoryFullName
 import com.examenp.recliclerview.data.network.entities.nobel.FullName
 import com.examenp.recliclerview.data.network.entities.nobel.KnownName
 import com.examenp.recliclerview.data.network.entities.nobel.Laureate
@@ -70,7 +71,7 @@ class GetAllNobelPrizesUserCaseKtor {
             listaNobelFinal.add(NobelPrizeX(
                 it.awardYear,
                 Category(it.category.en,"",""),
-                it.categoryFullName,
+                transformarCategoryFullName(it.categoryFullName),
                 it.dateAwarded,
                 transformarLaureates(it) ,
                 listOf(),
@@ -81,6 +82,11 @@ class GetAllNobelPrizesUserCaseKtor {
         }
 
         return listaNobelFinal;
+    }
+
+    private fun transformarCategoryFullName(categoryFullName: com.examenp.recliclerview.data.network.entities.nobelserializable.CategoryFullName): com.examenp.recliclerview.data.network.entities.nobel.CategoryFullName? {
+
+        return CategoryFullName()
     }
 
     private fun transformarLaureates(it: NobelPrizeXS): List<Laureate> {

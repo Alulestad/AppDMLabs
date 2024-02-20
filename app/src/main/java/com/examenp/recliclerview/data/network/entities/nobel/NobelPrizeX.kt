@@ -1,15 +1,16 @@
 package com.examenp.recliclerview.data.network.entities.nobel
 
-import com.examenp.recliclerview.data.network.entities.nobelserializable.CategoryFullName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class NobelPrizeX(
-    val awardYear: String,
-    val category: Category,
-    val categoryFullName: CategoryFullName,
-    val dateAwarded: String,
-    val laureates: List<Laureate>,
-    val links: List<LinkX>,
-    val prizeAmount: Int,
-    val prizeAmountAdjusted: Int
+    val awardYear: String?="",
+    val category: Category?=null,
+    val categoryFullName: CategoryFullName?=null,
+    val dateAwarded: String?="",
+    val laureates: List<Laureate>?= emptyList(),
+    val links: List<LinkX>?= emptyList(),
+    val prizeAmount: Int?=-1,
+    val prizeAmountAdjusted: Int?=-1
 )
 

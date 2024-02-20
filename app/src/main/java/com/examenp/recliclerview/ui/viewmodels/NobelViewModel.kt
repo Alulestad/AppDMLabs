@@ -8,6 +8,7 @@ import com.examenp.recliclerview.data.network.entities.nobel.NobelPrizeX
 import com.examenp.recliclerview.data.network.entities.nobelserializable.NobelPrizeXS
 import com.examenp.recliclerview.logic.entities.FullInfoAnimeLG
 import com.examenp.recliclerview.logic.usercase.jikan.JikanAnimeUserCase
+import com.examenp.recliclerview.logic.usercase.nobel.GetAllNobelPrizesKtor
 import com.examenp.recliclerview.logic.usercase.nobel.GetAllNobelPrizesUserCase
 import com.examenp.recliclerview.logic.usercase.nobel.GetAllNobelPrizesUserCaseKtor
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +22,20 @@ class NobelViewModel : ViewModel() {
     val error = MutableLiveData<String>()
 
     fun getAllNobelPrizes() { //Aca yo hago uncamenta la consulta en el IO
+        viewModelScope.launch(Dispatchers.IO) {
+            val response=GetAllNobelPrizesKtor().invoke()
+
+            if(response.isNotEmpty()){
+                listItems.postValue(response)
+            }else{
+                error.postValue("Ocurrio un error al llamar a la API")
+            }
+
+        }
+
+    }
+
+    fun getAllNobelPrizesTrabajoEnGrupo() { //Aca yo hago uncamenta la consulta en el IO
         viewModelScope.launch(Dispatchers.IO) {
 
             val userCase = GetAllNobelPrizesUserCaseKtor()
@@ -43,4 +58,6 @@ class NobelViewModel : ViewModel() {
         }
 
     }
+
+
 }
