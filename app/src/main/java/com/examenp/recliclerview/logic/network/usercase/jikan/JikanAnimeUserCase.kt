@@ -1,9 +1,9 @@
-package com.examenp.recliclerview.logic.usercase.jikan
+package com.examenp.recliclerview.logic.network.usercase.jikan
 
 import android.util.Log
 import com.examenp.recliclerview.data.network.endpoints.anime.AnimeEndPoint
 import com.examenp.recliclerview.data.network.repository.RetrofitBase
-import com.examenp.recliclerview.logic.entities.FullInfoAnimeLG
+import com.examenp.recliclerview.logic.network.entities.FullInfoAnimeLG
 
 import com.examenp.recliclerview.core.Constants
 import com.examenp.recliclerview.core.getFullInfoAnimeLG

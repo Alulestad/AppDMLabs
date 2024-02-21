@@ -1,20 +1,13 @@
 package com.examenp.recliclerview.ui.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.examenp.recliclerview.data.network.entities.nobel.NobelPrizeX
-import com.examenp.recliclerview.data.network.entities.nobelserializable.NobelPrizeXS
-import com.examenp.recliclerview.logic.entities.FullInfoAnimeLG
-import com.examenp.recliclerview.logic.usercase.jikan.JikanAnimeUserCase
-import com.examenp.recliclerview.logic.usercase.nobel.GetAllNobelPrizesKtor
-import com.examenp.recliclerview.logic.usercase.nobel.GetAllNobelPrizesUserCase
-import com.examenp.recliclerview.logic.usercase.nobel.GetAllNobelPrizesUserCaseKtor
+import com.examenp.recliclerview.logic.network.usercase.nobel.GetAllNobelPrizesKtor
+import com.examenp.recliclerview.logic.network.usercase.nobel.GetAllNobelPrizesUserCaseKtor
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class NobelViewModel : ViewModel() {
 

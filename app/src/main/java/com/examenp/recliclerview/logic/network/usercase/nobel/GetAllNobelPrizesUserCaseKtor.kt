@@ -1,4 +1,4 @@
-package com.examenp.recliclerview.logic.usercase.nobel
+package com.examenp.recliclerview.logic.network.usercase.nobel
 
 import android.util.Log
 

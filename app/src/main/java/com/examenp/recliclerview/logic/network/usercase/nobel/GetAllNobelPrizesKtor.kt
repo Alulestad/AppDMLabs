@@ -1,8 +1,6 @@
-package com.examenp.recliclerview.logic.usercase.nobel
+package com.examenp.recliclerview.logic.network.usercase.nobel
 
 import android.util.Log
-import com.examenp.recliclerview.core.Constants
-import com.examenp.recliclerview.data.network.endpoints.nobel.NobelPrizeEndPoint
 import com.examenp.recliclerview.data.network.entities.nobel.NobelPrize
 import com.examenp.recliclerview.data.network.entities.nobel.NobelPrizeX
 import com.examenp.recliclerview.data.network.repository.KtorApiModule

@@ -1,7 +1,6 @@
 package com.examenp.recliclerview.data.network.entities.jikan.AllAnimes
 
-import com.examenp.recliclerview.data.network.entities.jikan.anime.FullInfoAnime
-import com.examenp.recliclerview.logic.entities.FullInfoAnimeLG
+import com.examenp.recliclerview.logic.network.entities.FullInfoAnimeLG
 
 data class AllAnimes(
     val `data`: List<Data>,

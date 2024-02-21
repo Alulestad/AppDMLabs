@@ -11,8 +11,8 @@ import androidx.navigation.fragment.navArgs
 import coil.load
 import com.examenp.recliclerview.R
 import com.examenp.recliclerview.databinding.FragmentDetailBinding
-import com.examenp.recliclerview.logic.entities.FullInfoAnimeLG
-import com.examenp.recliclerview.logic.usercase.jikan.JikanAnimeUserCase
+import com.examenp.recliclerview.logic.network.entities.FullInfoAnimeLG
+import com.examenp.recliclerview.logic.network.usercase.jikan.JikanAnimeUserCase
 import com.examenp.recliclerview.ui.viewmodels.DetailViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +24,7 @@ class DetailFragment : Fragment() {
 
     val args:DetailFragmentArgs by navArgs() //el by es un delegado
 
-    private var usersList:FullInfoAnimeLG ?= null
+    private var usersList: FullInfoAnimeLG?= null
 
     private val detailVM:  DetailViewModel by viewModels()
 

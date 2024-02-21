@@ -1,7 +1,5 @@
 package com.examenp.recliclerview.data.network.models.remote
 
-import kotlinx.serialization.Serializable
-
 /*
 @Serializable
 data class RemoteNobel( //seria como mi json original

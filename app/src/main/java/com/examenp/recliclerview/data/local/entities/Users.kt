@@ -1,4 +1,4 @@
-package com.examenp.recliclerview.data.entities
+package com.examenp.recliclerview.data.local.entities
 
 data class Users (
     val id: Int=2,

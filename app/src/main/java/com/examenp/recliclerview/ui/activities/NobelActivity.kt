@@ -2,7 +2,6 @@ package com.examenp.recliclerview.ui.activities
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -12,14 +11,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.examenp.recliclerview.R
-import com.examenp.recliclerview.data.network.ApiOperation
 import com.examenp.recliclerview.databinding.ActivityNobelBinding
 import com.examenp.recliclerview.ui.adapters.NobelPrizeAdapter
 import com.examenp.recliclerview.ui.viewmodels.NobelViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class NobelActivity : AppCompatActivity() {
 

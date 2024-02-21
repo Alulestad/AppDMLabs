@@ -1,6 +1,6 @@
 package com.examenp.recliclerview.core
 
-import com.examenp.recliclerview.logic.entities.FullInfoAnimeLG
+import com.examenp.recliclerview.logic.network.entities.FullInfoAnimeLG
 import com.examenp.recliclerview.data.network.entities.jikan.top.Data
 import com.examenp.recliclerview.data.network.entities.jikan.anime.FullInfoAnime
 

@@ -1,18 +1,15 @@
 package com.examenp.recliclerview.ui.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
 import com.examenp.recliclerview.R
-import com.examenp.recliclerview.data.entities.Users
 import com.examenp.recliclerview.databinding.ItemsUsersBinding
-import com.examenp.recliclerview.logic.entities.FullInfoAnimeLG
+import com.examenp.recliclerview.logic.network.entities.FullInfoAnimeLG
 
 class UsersAdapterDiffUtil(
     private val onDeleteItem:(Int) -> Unit,

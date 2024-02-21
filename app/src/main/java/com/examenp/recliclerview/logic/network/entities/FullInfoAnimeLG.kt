@@ -1,4 +1,4 @@
-package com.examenp.recliclerview.logic.entities
+package com.examenp.recliclerview.logic.network.entities
 
 data class FullInfoAnimeLG (
     var id:Int=-1,

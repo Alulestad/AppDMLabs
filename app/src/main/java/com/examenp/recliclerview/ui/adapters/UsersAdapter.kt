@@ -1,13 +1,12 @@
 package com.examenp.recliclerview.ui.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.examenp.recliclerview.R
-import com.examenp.recliclerview.data.entities.Users
+import com.examenp.recliclerview.data.local.entities.Users
 import com.examenp.recliclerview.databinding.ItemsUsersBinding
 
 class UsersAdapter(
