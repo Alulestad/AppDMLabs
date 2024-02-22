@@ -77,7 +77,7 @@ class LoginViewModel: ViewModel() {
                 _user.postValue(newUs!!)
             }else{
                 _error.postValue("Ocurrio un error")
-
+//asdfs
             }
 
 
