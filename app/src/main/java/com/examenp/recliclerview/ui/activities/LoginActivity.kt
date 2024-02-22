@@ -26,8 +26,6 @@ import java.util.concurrent.Executor
 
 class LoginActivity : AppCompatActivity() {
 
-    //firebase
-    private lateinit var auth: FirebaseAuth
 
     private lateinit var binding:ActivityLoginBinding
 
@@ -51,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Initialize Firebase Auth
-        auth = Firebase.auth
+
 
 
         initListener()
@@ -63,7 +61,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
+        //aca iva el biometrico
+    /*
         val currentUser = auth.currentUser
         if (currentUser != null) {
             binding.etxtUser.visibility= View.GONE
@@ -78,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
             binding.imgFinger.visibility= View.GONE
             binding.txtInfo.text=getString(R.string.no_user)
         }
-
+*/
     }
 
     private fun initListener(){
@@ -90,18 +89,28 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnSaveUser.setOnClickListener {
-            createNewUsers(binding.etxtUser.text.toString(), binding.etxtPassword.text.toString())
+            loginViewModel.createUserWithEmailAndPassword(
+                binding.etxtUser.text.toString(),
+                binding.etxtPassword.text.toString()
+            )
+
         }
         binding.btnSignUser.setOnClickListener {
 
-            SignInUsers(binding.etxtUser.text.toString(),binding.etxtPassword.text.toString())
-
+            loginViewModel.sigInUserWithEmailAndPassword(
+                binding.etxtUser.text.toString(),
+                binding.etxtPassword.text.toString()
+            )
         }
 
         binding.btnNobels.setOnClickListener {
             iniciarNobeles()
         }
     }
+
+
+
+
 
     private fun iniciarNobeles() {
         try {
@@ -134,8 +143,26 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initObservables(){
 
+        loginViewModel.user.observe(this){
+            startActivity(Intent(this,MainActivity2::class.java))
+        }
+
+        loginViewModel.error.observe(this){
+            Snackbar.make(
+                this,
+                binding.etxtUser,
+                it,
+                Snackbar.LENGTH_LONG
+            ).show()
+
+
+        }
+
         loginViewModel.resultCheckBiometric.observe(this){
-            //it=code
+
+        }
+        /*
+        loginViewModel.resultCheckBiometric.observe(this){
             when(it){
                 BiometricManager.BIOMETRIC_SUCCESS->{
                     //binding.imgFinger.visibility= View.VISIBLE
@@ -162,41 +189,11 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        */
     }
 
-    private fun createNewUsers(user:String, password:String){
-        auth.createUserWithEmailAndPassword(user,password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("TAG", "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    Snackbar.make(this,binding.etxtUser,"CreateUserWithEmail: Success",Snackbar.LENGTH_LONG).show()
-                    binding.etxtUser.text.clear()
-                    binding.etxtPassword.text.clear()
 
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Snackbar.make(this,binding.etxtUser,task.exception!!.message.toString(),Snackbar.LENGTH_LONG).show()
 
-                }
-            }
-    }
-    private fun SignInUsers(email:String,password:String){
-
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    startActivity(Intent(this@LoginActivity,MainActivity2::class.java))
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("TAG", "signInWithEmail:failure", task.exception)
-                    Snackbar.make(this,binding.etxtUser,"signInWithEmail:failure",Snackbar.LENGTH_LONG).show()
-
-                }
-            }
-    }
 
 
 

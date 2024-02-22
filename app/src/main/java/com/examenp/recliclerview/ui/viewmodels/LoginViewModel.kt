@@ -8,9 +8,22 @@ import android.view.View
 import androidx.biometric.BiometricManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.examenp.recliclerview.R
+import com.examenp.recliclerview.data.network.entities.UserDB
+import com.examenp.recliclerview.logic.network.usercase.CreateUserWithEmailAndPasswordUserCase
+import com.examenp.recliclerview.logic.network.usercase.SingInUserWithEmailAndPasswordUserCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class LoginViewModel: ViewModel() {
+
+    val user get() = _user
+    private val _user = MutableLiveData<UserDB>()
+
+    val error get()=_error
+    private val _error = MutableLiveData<String>()
+
 
     val resultCheckBiometric = MutableLiveData<Int>() //voy hacer que devuelva los codigos
 
@@ -19,7 +32,6 @@ class LoginViewModel: ViewModel() {
         when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
             BiometricManager.BIOMETRIC_SUCCESS ->{
                 resultCheckBiometric.postValue(BiometricManager.BIOMETRIC_SUCCESS )
-
 
             }
 
@@ -39,6 +51,34 @@ class LoginViewModel: ViewModel() {
 
 
             }
+        }
+    }
+
+    fun sigInUserWithEmailAndPassword(email:String,password:String){
+        viewModelScope.launch(Dispatchers.IO) {
+            val us = SingInUserWithEmailAndPasswordUserCase().invoke(email,password)
+            if(us!=null){
+                _user.postValue(us!!)
+            }else{
+                _error.postValue("Ocurrio un error")
+
+            }
+
+
+        }
+    }
+
+    fun createUserWithEmailAndPassword(email:String,password:String){
+        viewModelScope.launch(Dispatchers.IO) {
+            val us = CreateUserWithEmailAndPasswordUserCase().invoke(email,password)
+            if(us!=null){
+                _user.postValue(us!!)
+            }else{
+                _error.postValue("Ocurrio un error")
+
+            }
+
+
         }
     }
 
