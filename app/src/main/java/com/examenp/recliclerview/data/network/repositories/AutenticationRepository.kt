@@ -8,7 +8,7 @@ import kotlinx.coroutines.tasks.await
 class AutenticationRepository {
 
     private val auth = Firebase.auth
-    suspend fun createUsersWithEmailAndPassword(user:String, password:String):Result<UserDB?> =
+    suspend fun createUsersWithEmailAndPassword(user:String, password:String) =
         runCatching {
             var userdb:UserDB?=null
             val usFirebase=auth.createUserWithEmailAndPassword(
@@ -19,8 +19,6 @@ class AutenticationRepository {
             if (usFirebase !=null) {
                 userdb = UserDB(usFirebase.uid, usFirebase.email!!, usFirebase.displayName.orEmpty())
             }
-
-
 
             return@runCatching userdb
         }

@@ -12,6 +12,7 @@ import androidx.lifecycle.viewModelScope
 import com.examenp.recliclerview.R
 import com.examenp.recliclerview.data.network.entities.UserDB
 import com.examenp.recliclerview.logic.network.usercase.CreateUserWithEmailAndPasswordUserCase
+import com.examenp.recliclerview.logic.network.usercase.SaveUserInDBUserCase
 import com.examenp.recliclerview.logic.network.usercase.SingInUserWithEmailAndPasswordUserCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -72,7 +73,8 @@ class LoginViewModel: ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             val us = CreateUserWithEmailAndPasswordUserCase().invoke(email,password)
             if(us!=null){
-                _user.postValue(us!!)
+                val newUs=SaveUserInDBUserCase().invoke(us.id,us.email,"usName")
+                _user.postValue(newUs!!)
             }else{
                 _error.postValue("Ocurrio un error")
 
