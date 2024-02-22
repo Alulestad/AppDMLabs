@@ -78,6 +78,8 @@ class LoginViewModel: ViewModel() {
             }else{
                 _error.postValue("Ocurrio un error")
 //asdfs
+                //fasdfsadfsaddsf
+                
             }
 
 
